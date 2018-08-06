@@ -19,11 +19,11 @@ import java.util.ArrayList;
 public class MemberAdapter extends BaseAdapter{
     Context context;
     LayoutInflater layoutInflater;
-    ArrayList<String> group;
+    ArrayList<String> groups;
 
-    public MemberAdapter(Context context,ArrayList group){
+    public MemberAdapter(Context context,ArrayList groups){
         super();
-        this.group = group;
+        this.groups = groups;
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
 
@@ -31,7 +31,7 @@ public class MemberAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return group.size();
+        return groups.size();
     }
 
     @Override
@@ -61,10 +61,10 @@ public class MemberAdapter extends BaseAdapter{
                 builder.setView(mView);
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogBox, int id) {
-                        if(group.get(position).equals("default")) {
-                            AddGroupActivity.addGroupMemberButton(memberName.getText().toString());
+                        if(groups.get(position).equals("default")) {
+                            //AddGroupActivity.addGroupMemberButton(memberName.getText().toString());
                         }else{
-                            group.set(position,memberName.getText().toString());
+                            groups.set(position,memberName.getText().toString());
                         }
                         MemberAdapter.super.notifyDataSetChanged();
                     }
@@ -77,10 +77,10 @@ public class MemberAdapter extends BaseAdapter{
             }
         });
 
-        if(group.get(position) != "default") {
+        if(groups.get(position) != "default") {
             ig.setVisibility(View.GONE);
             tv.setVisibility(View.GONE);
-            tv2.setText(group.get(position));
+            tv2.setText(groups.get(position));
         }
 
         return convertView;
