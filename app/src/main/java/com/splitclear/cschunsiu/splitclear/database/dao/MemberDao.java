@@ -2,23 +2,19 @@ package com.splitclear.cschunsiu.splitclear.database.dao;
 
 import android.arch.persistence.room.*;
 
-import com.splitclear.cschunsiu.splitclear.model.Groups;
 import com.splitclear.cschunsiu.splitclear.model.Member;
-
-import java.util.List;
 
 @Dao
 public interface MemberDao {
+//    @Query("Select * from `Group` where id=:groupsId")
+//    LiveData<Group> getGroup(int groupsId);
 
     @Insert
-    void insert(Member member);
+    void insertMemeber(Member... member);
 
-//    @Delete
-//    void delete(Member member);
-//
-//    @Query("SELECT * FROM member")
-//    List<Member> getAllRepos();
-//
-//    @Query("SELECT * FROM member WHERE groupsId=:groupsId")
-//    List<Member> findMemberById(int groupsId);
+    @Delete
+    void deleteMember(Member member);
+
+    @Update (onConflict = OnConflictStrategy.REPLACE)
+    void updateMember(Member member);
 }

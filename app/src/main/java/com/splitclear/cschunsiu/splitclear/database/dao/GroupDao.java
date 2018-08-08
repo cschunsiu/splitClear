@@ -9,27 +9,22 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import com.splitclear.cschunsiu.splitclear.database.GroupAllMembers;
-import com.splitclear.cschunsiu.splitclear.model.Groups;
-
-import java.util.List;
+import com.splitclear.cschunsiu.splitclear.model.Group;
 
 @Dao
 public interface GroupDao {
-//    @Query("SELECT * from groups")
-//    LiveData<List<Groups>> getAllGroups();
-
-    @Query("Select * from groups")
+    @Query("Select * from `Group`")
     GroupAllMembers getAllGroups();
 
-    @Query("Select * from groups where id=:groupsId")
-    LiveData<Groups> getGroup(int groupsId);
+    @Query("Select * from `Group` where id=:groupsId")
+    LiveData<Group> getGroup(int groupsId);
 
     @Insert
-    void insertGroup(Groups groups);
+    void insertGroup(Group group);
 
     @Delete
-    void deleteGroup(Groups groups);
+    void deleteGroup(Group group);
 
     @Update (onConflict = OnConflictStrategy.REPLACE)
-    void updateGroup(Groups groups);
+    void updateGroup(Group group);
 }
