@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,15 +27,22 @@ public class AddGroupActivity extends FragmentActivity {
     GroupRepo repository;
     private RecyclerView recyclerView;
     private MemberRecycleAdapter mAdapter;
+    private ArrayList ii = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_group_view);
         groupNameView = findViewById(R.id.editGroupNameField);
-        //groupMemberList = findViewById(R.id.groupMemberList);
 
-        ArrayList ii = new ArrayList();
+        ii.add("default");
+        ii.add("default");
+        ii.add("default");
+        ii.add("default");
+        ii.add("default");
+        ii.add("default");
+        ii.add("default");
+        ii.add("default");
         ii.add("default");
         ii.add("default");
 
@@ -46,6 +54,7 @@ public class AddGroupActivity extends FragmentActivity {
         mAdapter = new MemberRecycleAdapter(ii);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
     }
 
