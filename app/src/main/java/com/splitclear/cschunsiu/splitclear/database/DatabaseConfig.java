@@ -1,18 +1,16 @@
 package com.splitclear.cschunsiu.splitclear.database;
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.splitclear.cschunsiu.splitclear.database.dao.GroupDao;
 import com.splitclear.cschunsiu.splitclear.database.dao.MemberDao;
-import com.splitclear.cschunsiu.splitclear.model.Groups;
+import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
 
-@Database(entities = {Groups.class, Member.class}, version = 1, exportSchema = false)
+@Database(entities = {Group.class, Member.class}, version = 1, exportSchema = false)
 public abstract class DatabaseConfig extends RoomDatabase {
     private static final String DATABASE_NAME = "split-clear-db";
     private static DatabaseConfig INSTANCE;

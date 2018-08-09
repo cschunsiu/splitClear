@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.splitclear.cschunsiu.splitclear.database.dao.GroupDao;
-import com.splitclear.cschunsiu.splitclear.model.Groups;
+import com.splitclear.cschunsiu.splitclear.model.Group;
 
 public class GroupRepo {
     private final GroupDao groupDao;
@@ -19,11 +19,11 @@ public class GroupRepo {
         return groupDao.getAllGroups();
     }
 
-    public LiveData<Groups> getGroups(int id){
+    public LiveData<Group> getGroups(int id){
         return groupDao.getGroup(id);
     }
 
-    public void insertGroup(final Groups group){
+    public void insertGroup(final Group group){
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -33,7 +33,7 @@ public class GroupRepo {
         }.execute();
     }
 
-    public void updateGroup(final Groups group){
+    public void updateGroup(final Group group){
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -44,7 +44,7 @@ public class GroupRepo {
     }
 
     public void deleteGroup(final int id) {
-        final LiveData<Groups> group = getGroups(id);
+        final LiveData<Group> group = getGroups(id);
         if(group != null) {
             new AsyncTask<Void, Void, Void>() {
                 @Override

@@ -9,28 +9,24 @@ import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 
 @Entity
-public class Groups {
+public class Group {
 
     @PrimaryKey(autoGenerate = true)
     public int id;
     @NonNull
     public String name;
 
-    public Groups(String name){
+    public Group(String name){
         this.name = name;
     }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public List<String> getMembers() {
-//        return members;
-//    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 //
 //    public void addGroupMembers(){
 //        members.add("default");

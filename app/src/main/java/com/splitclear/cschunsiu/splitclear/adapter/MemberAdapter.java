@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
-import com.splitclear.cschunsiu.splitclear.activity.AddGroupActivity;
 
 import java.util.ArrayList;
 
@@ -46,7 +45,7 @@ public class MemberAdapter extends BaseAdapter{
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        convertView = layoutInflater.inflate(R.layout.group_children_list_member_view, null);
+        convertView = layoutInflater.inflate(R.layout.add_member_layout, null);
 
         ImageView ig = convertView.findViewById(R.id.group_children_image);
         TextView tv = convertView.findViewById(R.id.group_children_edittext);
