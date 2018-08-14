@@ -1,9 +1,6 @@
 package com.splitclear.cschunsiu.splitclear.activity;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,9 +10,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.splitclear.cschunsiu.splitclear.adapter.MemberRecycleAdapter;
-import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.R;
-import com.splitclear.cschunsiu.splitclear.adapter.MemberAdapter;
 import com.splitclear.cschunsiu.splitclear.database.GroupRepo;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 
@@ -46,16 +41,8 @@ public class AddGroupActivity extends FragmentActivity {
         ii.add("default");
         ii.add("default");
 
-//        MemberAdapter custom = new MemberAdapter(this, ii);
-//        groupMemberList.setAdapter(custom);
-
         recyclerView = (RecyclerView) findViewById(R.id.addGroupMemberList);
-
-        mAdapter = new MemberRecycleAdapter(ii);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        recyclerView.setAdapter(mAdapter);
+        setRecyclerViewListener(recyclerView);
     }
 
     public void captureGroupData(View view){
@@ -63,5 +50,13 @@ public class AddGroupActivity extends FragmentActivity {
 
         Group group = new Group(text);
         group.setName(text);
+    }
+
+    private void setRecyclerViewListener(RecyclerView recyclerView){
+        mAdapter = new MemberRecycleAdapter(ii,this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setAdapter(mAdapter);
     }
 }
