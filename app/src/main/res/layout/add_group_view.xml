@@ -60,15 +60,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!--<ListView-->
-            <!--android:id="@+id/groupMemberList"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:footerDividersEnabled="false"-->
-            <!--android:headerDividersEnabled="false"-->
-            <!--android:isScrollContainer="false"-->
-            <!--android:scrollbars="vertical"-->
-            <!--android:visibility="visible" />-->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/addGroupMemberList"
             android:layout_width="match_parent"
