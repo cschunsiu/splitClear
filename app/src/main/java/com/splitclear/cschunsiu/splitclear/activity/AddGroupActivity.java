@@ -1,5 +1,6 @@
 package com.splitclear.cschunsiu.splitclear.activity;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import com.splitclear.cschunsiu.splitclear.adapter.MemberRecycleAdapter;
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.database.GroupRepo;
+import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class AddGroupActivity extends FragmentActivity {
     private RecyclerView recyclerView;
     private MemberRecycleAdapter mAdapter;
     private ArrayList ii = new ArrayList();
+    MainViewModel mainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +46,14 @@ public class AddGroupActivity extends FragmentActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.addGroupMemberList);
         setRecyclerViewListener(recyclerView);
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     }
 
     public void captureGroupData(View view){
         String text = groupNameView.getText().toString();
 
         Group group = new Group(text);
-        group.setName(text);
+        mainViewModel.insertGroups(group);
     }
 
     private void setRecyclerViewListener(RecyclerView recyclerView){

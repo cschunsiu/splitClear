@@ -11,13 +11,21 @@ import android.arch.persistence.room.Update;
 import com.splitclear.cschunsiu.splitclear.database.GroupAllMembers;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 
+import java.util.List;
+
 @Dao
 public interface GroupDao {
+//    @Query("Select * from `Group`")
+//    GroupAllMembers getAllGroups();
+
     @Query("Select * from `Group`")
-    GroupAllMembers getAllGroups();
+    LiveData<List<Group>> getGroupList();
 
     @Query("Select * from `Group` where id=:groupsId")
     LiveData<Group> getGroup(int groupsId);
+
+    @Query("Select * from `Group`")
+    List<Group> getGroup();
 
     @Insert
     void insertGroup(Group group);

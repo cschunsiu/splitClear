@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
+import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import org.w3c.dom.Text;
@@ -46,7 +47,6 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         public void onClick(View v) {
             Log.d(TAG, "onClicked " + getAdapterPosition());
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            //View mView = layoutInflater.inflate(R.layout.group_children_popup,null);
             builder.setView(R.layout.group_children_popup);
             builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
                 @Override
@@ -57,9 +57,6 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
             builder.setNegativeButton("CONFIRM", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
-                    // DO SOMETHING HERE
-
                 }
             });
 
@@ -91,5 +88,11 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
     @Override
     public int getItemCount() {
         return memberList.size();
+    }
+
+    public void addGroup(Group group) {
+        memberList.add(group.name);
+        System.out.println("added");
+        notifyDataSetChanged();
     }
 }
