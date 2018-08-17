@@ -26,7 +26,7 @@ import java.util.List;
 public class MainActivity extends FragmentActivity {
     private MainViewModel mainViewModel;
     private MemberRecycleAdapter mAdapter;
-    private List<String> groups = new ArrayList();
+    private List<Group> initGroupList = new ArrayList();
     private RecyclerView recyclerView;
 
     @Override
@@ -40,11 +40,13 @@ public class MainActivity extends FragmentActivity {
         mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
             @Override
             public void onChanged(@Nullable List<Group> groups) {
-                for(Group group : groups) {
-                    mAdapter.addGroup(group);
-                }
+                    mAdapter.addGroup(groups);
             }
         });
+
+        //init groupList
+        //initGroupList = mainViewModel.getNonLiveGroup();
+
         setGroupRecyclerView(recyclerView);
      }
 
@@ -55,8 +57,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void setGroupRecyclerView(RecyclerView recyclerView){
-        List<Group> lp = mainViewModel.getNonLiveGroup();
-        mAdapter = new MemberRecycleAdapter(groups,this);
+        mAdapter = new MemberRecycleAdapter(initGroupList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

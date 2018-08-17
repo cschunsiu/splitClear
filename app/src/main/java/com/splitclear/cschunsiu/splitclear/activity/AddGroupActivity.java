@@ -17,6 +17,7 @@ import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddGroupActivity extends FragmentActivity {
     private EditText groupNameView;
@@ -24,7 +25,8 @@ public class AddGroupActivity extends FragmentActivity {
     GroupRepo repository;
     private RecyclerView recyclerView;
     private MemberRecycleAdapter mAdapter;
-    private ArrayList ii = new ArrayList();
+    private List<String> memberList  = new ArrayList();
+    private List<Group> groupList  = new ArrayList();
     MainViewModel mainViewModel;
 
     @Override
@@ -33,18 +35,18 @@ public class AddGroupActivity extends FragmentActivity {
         setContentView(R.layout.add_group_view);
         groupNameView = findViewById(R.id.editGroupNameField);
 
-        ii.add("default");
-        ii.add("default");
-        ii.add("default");
-        ii.add("default");
-        ii.add("default");
-        ii.add("default");
-        ii.add("default");
-        ii.add("default");
-        ii.add("default");
-        ii.add("default");
+        memberList.add("default");
+        memberList.add("default");
+        memberList.add("default");
+        memberList.add("default");
+        memberList.add("default");
+        memberList.add("default");
+        memberList.add("default");
+        memberList.add("default");
+        memberList.add("default");
+        memberList.add("default");
 
-        recyclerView = (RecyclerView) findViewById(R.id.addGroupMemberList);
+        recyclerView = findViewById(R.id.addGroupMemberList);
         setRecyclerViewListener(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     }
@@ -54,10 +56,11 @@ public class AddGroupActivity extends FragmentActivity {
 
         Group group = new Group(text);
         mainViewModel.insertGroups(group);
+        finish();
     }
 
     private void setRecyclerViewListener(RecyclerView recyclerView){
-        mAdapter = new MemberRecycleAdapter(ii,this);
+        mAdapter = new MemberRecycleAdapter(groupList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

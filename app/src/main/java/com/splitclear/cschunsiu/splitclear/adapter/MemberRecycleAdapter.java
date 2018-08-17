@@ -26,7 +26,7 @@ import static android.content.ContentValues.TAG;
 
 public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdapter.NumberViewHolder> {
 
-    private List<String> memberList;
+    private List<Group> memberList;
     private Context context;
 
 
@@ -65,7 +65,7 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         }
     }
 
-    public MemberRecycleAdapter(List<String> memberList, Context context){
+    public MemberRecycleAdapter(List<Group> memberList, Context context){
         this.memberList = memberList;
         this.context = context;
     }
@@ -81,7 +81,7 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
 
     @Override
     public void onBindViewHolder(@NonNull NumberViewHolder holder, final int position) {
-        String member = memberList.get(position);
+        String member = memberList.get(position).name;
         holder.showingTextView.setText(member);
     }
 
@@ -90,9 +90,8 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         return memberList.size();
     }
 
-    public void addGroup(Group group) {
-        memberList.add(group.name);
-        System.out.println("added");
+    public void addGroup(List<Group> group) {
+        memberList = group;
         notifyDataSetChanged();
     }
 }
