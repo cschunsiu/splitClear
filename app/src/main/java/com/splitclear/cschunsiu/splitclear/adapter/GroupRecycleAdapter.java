@@ -1,8 +1,6 @@
 package com.splitclear.cschunsiu.splitclear.adapter;
 
-
 import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
@@ -11,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,27 +17,25 @@ import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
-public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdapter.MemberViewHolder> {
-
-    private List<Member> memberList;
+public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapter.GroupViewHolder>{
+    private List<Group> groupList;
     private Context context;
 
-    public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class GroupViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView showingTextView, nameTextview;
         ImageView icon;
 
-        public MemberViewHolder(View itemView){
+        public GroupViewHolder(View itemView){
             super(itemView);
 
             showingTextView = (TextView)itemView.findViewById(R.id.group_children_edittext);
             nameTextview = (TextView)itemView.findViewById(R.id.postMemberName);
             icon = (ImageView) itemView.findViewById(R.id.group_children_image);
+
             itemView.setOnClickListener(this);
         }
 
@@ -64,33 +61,32 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         }
     }
 
-    public MemberRecycleAdapter(List<Member> memberList, Context context){
-        this.memberList = memberList;
+    public GroupRecycleAdapter(List<Group> groupList, Context context){
+        this.groupList = groupList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public MemberViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.add_member_layout, parent, false);
+    public GroupViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_member_layout,parent,false);
 
-        return new MemberViewHolder(itemView);
+        return new GroupViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MemberViewHolder holder, final int position) {
-        String member = memberList.get(position).name;
+    public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
+        String member = groupList.get(position).name;
         holder.showingTextView.setText(member);
     }
 
     @Override
     public int getItemCount() {
-        return memberList.size();
+        return groupList.size();
     }
 
-    public void addGroup(List<Member> group) {
-        memberList = group;
+    public void addGroup(List<Group> group) {
+        groupList = group;
         notifyDataSetChanged();
     }
 }

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.splitclear.cschunsiu.splitclear.R;
+import com.splitclear.cschunsiu.splitclear.adapter.GroupRecycleAdapter;
 import com.splitclear.cschunsiu.splitclear.adapter.MemberRecycleAdapter;
 import com.splitclear.cschunsiu.splitclear.database.GroupAllMembers;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class MainActivity extends FragmentActivity {
     private MainViewModel mainViewModel;
-    private MemberRecycleAdapter mAdapter;
+    private GroupRecycleAdapter mAdapter;
     private List<Group> initGroupList = new ArrayList();
     private RecyclerView recyclerView;
 
@@ -57,7 +58,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void setGroupRecyclerView(RecyclerView recyclerView){
-        mAdapter = new MemberRecycleAdapter(initGroupList,this);
+        mAdapter = new GroupRecycleAdapter(initGroupList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

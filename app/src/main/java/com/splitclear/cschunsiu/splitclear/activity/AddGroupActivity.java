@@ -15,6 +15,7 @@ import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.database.GroupRepo;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Group;
+import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class AddGroupActivity extends FragmentActivity {
     private RecyclerView recyclerView;
     private MemberRecycleAdapter mAdapter;
     private List<String> memberList  = new ArrayList();
-    private List<Group> groupList  = new ArrayList();
+    private List<Member> groupList  = new ArrayList();
     MainViewModel mainViewModel;
 
     @Override
