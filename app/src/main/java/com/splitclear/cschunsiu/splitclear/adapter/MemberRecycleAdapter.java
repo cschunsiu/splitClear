@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,7 +47,9 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         public void onClick(View v) {
             Log.d(TAG, "onClicked " + getAdapterPosition());
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setView(R.layout.group_children_popup);
+            LayoutInflater inflater = LayoutInflater.from(context);
+            final View view = inflater.inflate(R.layout.group_children_popup,null);
+            builder.setView(view);
             builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -56,6 +59,8 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
             builder.setNegativeButton("CONFIRM", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    EditText input = view.findViewById(R.id.userInputMemberName);
+                    addMember(input.getText().toString());
                 }
             });
 
@@ -81,7 +86,13 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
     @Override
     public void onBindViewHolder(@NonNull MemberViewHolder holder, final int position) {
         String member = memberList.get(position).name;
-        holder.showingTextView.setText(member);
+
+        if(!(memberList.get(position).name).equals("Default")){
+            holder.showingTextView.setVisibility(View.GONE);
+            holder.icon.setVisibility(View.GONE);
+            holder.nameTextview.setText(member);
+        }
+
     }
 
     @Override
@@ -89,8 +100,12 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         return memberList.size();
     }
 
-    public void addGroup(List<Member> group) {
-        memberList = group;
+    public void addMember(String name) {
+        memberList.remove(memberList.size()-1);
+        memberList.add(new Member(name,1));
+        if(memberList.size() < 10){
+            memberList.add(new Member());
+        }
         notifyDataSetChanged();
     }
 }

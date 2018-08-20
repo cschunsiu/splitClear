@@ -22,12 +22,10 @@ import java.util.List;
 
 public class AddGroupActivity extends FragmentActivity {
     private EditText groupNameView;
-    private ListView groupMemberList;
     GroupRepo repository;
     private RecyclerView recyclerView;
     private MemberRecycleAdapter mAdapter;
-    private List<String> memberList  = new ArrayList();
-    private List<Member> groupList  = new ArrayList();
+    private List<Member> memberList  = new ArrayList();
     MainViewModel mainViewModel;
 
     @Override
@@ -35,23 +33,15 @@ public class AddGroupActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_group_view);
         groupNameView = findViewById(R.id.editGroupNameField);
-
-        memberList.add("default");
-        memberList.add("default");
-        memberList.add("default");
-        memberList.add("default");
-        memberList.add("default");
-        memberList.add("default");
-        memberList.add("default");
-        memberList.add("default");
-        memberList.add("default");
-        memberList.add("default");
+        initMemberList();
 
         recyclerView = findViewById(R.id.addGroupMemberList);
         setRecyclerViewListener(recyclerView);
+
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
     }
 
+    //complete button
     public void captureGroupData(View view){
         String text = groupNameView.getText().toString();
 
@@ -60,8 +50,12 @@ public class AddGroupActivity extends FragmentActivity {
         finish();
     }
 
+    private void initMemberList(){
+        memberList.add(new Member());
+    }
+
     private void setRecyclerViewListener(RecyclerView recyclerView){
-        mAdapter = new MemberRecycleAdapter(groupList,this);
+        mAdapter = new MemberRecycleAdapter(memberList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

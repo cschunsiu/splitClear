@@ -45,9 +45,6 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
-        //init groupList
-        //initGroupList = mainViewModel.getNonLiveGroup();
-
         setGroupRecyclerView(recyclerView);
      }
 

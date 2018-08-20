@@ -32,9 +32,9 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
         public GroupViewHolder(View itemView){
             super(itemView);
 
-            showingTextView = (TextView)itemView.findViewById(R.id.group_children_edittext);
-            nameTextview = (TextView)itemView.findViewById(R.id.postMemberName);
-            icon = (ImageView) itemView.findViewById(R.id.group_children_image);
+            showingTextView = itemView.findViewById(R.id.group_children_edittext);
+            nameTextview = itemView.findViewById(R.id.postMemberName);
+            icon = itemView.findViewById(R.id.group_children_image);
 
             itemView.setOnClickListener(this);
         }
@@ -77,7 +77,9 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
     @Override
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         String member = groupList.get(position).name;
-        holder.showingTextView.setText(member);
+        holder.showingTextView.setVisibility(View.GONE);
+        holder.icon.setVisibility(View.GONE);
+        holder.nameTextview.setText(member);
     }
 
     @Override

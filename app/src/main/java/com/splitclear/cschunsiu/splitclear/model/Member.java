@@ -18,6 +18,10 @@ public class Member {
     public String name;
     public int groupsId;
 
+    public Member(){
+        this.name = "Default";
+    }
+
     public Member(String name, int groupsId) {
         this.name = name;
         this.groupsId = groupsId;
