@@ -41,7 +41,7 @@ public class MainActivity extends FragmentActivity {
         mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
             @Override
             public void onChanged(@Nullable List<Group> groups) {
-                    mAdapter.addGroup(groups);
+                mAdapter.setGroup(groups);
             }
         });
 

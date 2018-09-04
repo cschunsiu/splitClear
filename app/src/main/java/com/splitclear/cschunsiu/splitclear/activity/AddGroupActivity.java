@@ -22,10 +22,9 @@ import java.util.List;
 
 public class AddGroupActivity extends FragmentActivity {
     private EditText groupNameView;
-    GroupRepo repository;
     private RecyclerView recyclerView;
     private MemberRecycleAdapter mAdapter;
-    private List<Member> memberList  = new ArrayList();
+    public static List<Member> memberList  = new ArrayList();
     MainViewModel mainViewModel;
 
     @Override
@@ -46,7 +45,15 @@ public class AddGroupActivity extends FragmentActivity {
         String text = groupNameView.getText().toString();
 
         Group group = new Group(text);
-        mainViewModel.insertGroups(group);
+        memberList.remove(memberList.size()-1);
+
+        Long rowID = mainViewModel.insertGroupAndMember(group);
+
+        List<Group> resultGroup = mainViewModel.getNonLiveGroup();
+        System.out.println(rowID);
+        System.out.println(resultGroup.get(0));
+
+        memberList.clear();
         finish();
     }
 

@@ -22,8 +22,11 @@ public class Member {
         this.name = "Default";
     }
 
-    public Member(String name, int groupsId) {
+    public Member(String name) {
         this.name = name;
+    }
+
+    public void setGroupsId(int groupsId){
         this.groupsId = groupsId;
     }
 }

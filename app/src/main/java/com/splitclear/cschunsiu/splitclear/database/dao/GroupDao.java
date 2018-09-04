@@ -28,7 +28,7 @@ public interface GroupDao {
     List<Group> getGroup();
 
     @Insert
-    void insertGroup(Group group);
+    long insertGroup(Group group);
 
     @Delete
     void deleteGroup(Group group);

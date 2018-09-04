@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import com.splitclear.cschunsiu.splitclear.database.GroupAllMembers;
 import com.splitclear.cschunsiu.splitclear.database.GroupRepo;
 import com.splitclear.cschunsiu.splitclear.model.Group;
+import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.List;
 
@@ -31,5 +32,9 @@ public class MainViewModel extends AndroidViewModel {
 
     public List<Group> getNonLiveGroup(){
         return repository.getNonLiveGroup();
+    }
+
+    public Long insertGroupAndMember (Group group){
+        return repository.insertGroup(group);
     }
 }

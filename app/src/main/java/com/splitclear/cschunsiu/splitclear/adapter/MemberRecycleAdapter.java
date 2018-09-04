@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
+import com.splitclear.cschunsiu.splitclear.activity.AddGroupActivity;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
 
@@ -102,10 +103,11 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
 
     public void addMember(String name) {
         memberList.remove(memberList.size()-1);
-        memberList.add(new Member(name,1));
+        memberList.add(new Member(name));
         if(memberList.size() < 10){
             memberList.add(new Member());
         }
+        AddGroupActivity.memberList = memberList;
         notifyDataSetChanged();
     }
 }

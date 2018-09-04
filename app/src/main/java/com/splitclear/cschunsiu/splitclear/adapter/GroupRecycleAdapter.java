@@ -87,7 +87,7 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
         return groupList.size();
     }
 
-    public void addGroup(List<Group> group) {
+    public void setGroup(List<Group> group) {
         groupList = group;
         notifyDataSetChanged();
     }
