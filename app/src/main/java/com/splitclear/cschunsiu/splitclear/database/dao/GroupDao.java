@@ -10,6 +10,7 @@ import android.arch.persistence.room.Update;
 
 import com.splitclear.cschunsiu.splitclear.database.GroupAllMembers;
 import com.splitclear.cschunsiu.splitclear.model.Group;
+import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.List;
 
@@ -27,8 +28,17 @@ public interface GroupDao {
     @Query("Select * from `Group`")
     List<Group> getGroup();
 
+    @Query("Select * from `Group` where name=:name")
+    Group getGroupMethod(String name);
+
+    @Query("Select * from `Member` where groupsId=:groupsId")
+    List<Member> getMemberMethod(int groupsId);
+
     @Insert
-    long insertGroup(Group group);
+    int insertGroup(Group group);
+
+    @Insert
+    void insertMemberList(List<Member> members);
 
     @Delete
     void deleteGroup(Group group);

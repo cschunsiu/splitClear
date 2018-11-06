@@ -45,13 +45,11 @@ public class AddGroupActivity extends FragmentActivity {
         String text = groupNameView.getText().toString();
 
         Group group = new Group(text);
+        System.out.println("zzzzzzzzzzzzz" + group.getId());
         memberList.remove(memberList.size()-1);
+        group.setMemberList(memberList);
 
-        Long rowID = mainViewModel.insertGroupAndMember(group);
-
-        List<Group> resultGroup = mainViewModel.getNonLiveGroup();
-        System.out.println(rowID);
-        System.out.println(resultGroup.get(0));
+        mainViewModel.insertGroupAndMember(group);
 
         memberList.clear();
         finish();

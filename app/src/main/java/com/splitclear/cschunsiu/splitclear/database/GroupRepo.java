@@ -8,12 +8,10 @@ import com.splitclear.cschunsiu.splitclear.database.dao.GroupDao;
 import com.splitclear.cschunsiu.splitclear.database.dao.MemberDao;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
-import com.splitclear.cschunsiu.splitclear.util.DatabaseAsyncTask;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-public class GroupRepo {
+public class GroupRepo{
     private final GroupDao groupDao;
     private final MemberDao memberDao;
 
@@ -23,76 +21,40 @@ public class GroupRepo {
         memberDao = db.memberDao();
     }
 
-//    public GroupAllMembers getGroups(){
-//        return groupDao.getAllGroups();
-//    }
-
-    public List<Group> getNonLiveGroup() {
-        final List<Group> resultGroup = null;
-        new AsyncTask<Void, Void, List<Group>>() {
+    public void insertGroupAndMember(final Group group) {
+        new AsyncTask<Void, Void, Void>() {
             @Override
-            protected List<Group> doInBackground(Void... voids) {
-                List<Group> m = null;
-                try {
-                    m = groupDao.getGroup();
-                } catch (Exception e) {
-                    System.out.println(e);
+            protected Void doInBackground(Void... voids) {
+                long groupID = groupDao.insertGroup(group);
+                for(Member member : group.getMemberList()){
+                    memberDao.insertMemeber(member);
                 }
-                return m;
-            }
-            @Override
-            protected void onPostExecute(List<Group> group){
+                return null;
             }
         }.execute();
-        return null;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public LiveData<List<Group>> getGroup(){return groupDao.getGroupList();}
 
     public LiveData<Group> getGroups(int id){
         return groupDao.getGroup(id);
     }
 
-    public Long insertGroup(final Group group){
-        Long rowID = null;
-        try {
-            rowID = new AsyncTask<Void, Void, Long>() {
-                Long result;
-                @Override
-                protected Long doInBackground(Void... voids) {
-                    Long rowID = groupDao.insertGroup(group);
-                    return rowID;
-                }
-                @Override
-                protected void onPostExecute(Long rowID){
-
-                }
-
-            }.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        return rowID;
-
-//        new DatabaseAsyncTask(new DatabaseAsyncTask.AsyncResponse() {
+//    public void insertGroup(final Group group) {
+//        new AsyncTask<Void, Void, Void>() {
 //            @Override
-//            public void processFinish(Object output) {
-//            }
-//        }){
-//            @Override
-//            public void processFinish(Object output) {
-//
-//            }
-//
-//            @Override
-//            public Long doInBackground(Void... voids) {
-//                Long rowID = groupDao.insertGroup(group);
-//                return rowID;
+//            protected Void doInBackground(Void... voids) {
+//                long groupID = groupDao.insertGroup(group);
+//                System.out.println(groupID);
+//                List<Member> members = group.getMemberList();
+//                for (int i = 0; i < members.size(); i++) {
+//                    members.get(i).setGroupsId(groupID);
+//                }
+//                return null;
 //            }
 //        }.execute();
-    }
+//    }
 
     public void updateGroup(final Group group){
         new AsyncTask<Void, Void, Void>() {
@@ -117,10 +79,6 @@ public class GroupRepo {
         }
     }
 
-//    private <T> T returnValue(T value){
-//        return value;
-//    }
-
     public void insertMember(final List<Member> members){
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -132,4 +90,5 @@ public class GroupRepo {
             }
         }.execute();
     }
+
 }
