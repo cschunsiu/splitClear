@@ -30,11 +30,7 @@ public class MainViewModel extends AndroidViewModel {
         repository.insertGroup(group);
     }
 
-    public List<Group> getNonLiveGroup(){
-        return repository.getNonLiveGroup();
-    }
-
-    public Long insertGroupAndMember (Group group){
-        return repository.insertGroup(group);
+    public void insertGroupAndMember (Group group){
+        repository.insertGroupAndMember(group);
     }
 }

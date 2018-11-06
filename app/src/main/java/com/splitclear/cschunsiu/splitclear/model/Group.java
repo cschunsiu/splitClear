@@ -15,6 +15,8 @@ public class Group {
     public int id;
     @NonNull
     public String name;
+    @Ignore
+    private List<Member> memberList;
 
     public Group(String name){
         this.name = name;
@@ -30,5 +32,13 @@ public class Group {
 
     public int getId(){
         return id;
+    }
+
+    public List<Member> getMemberList() {
+        return memberList;
+    }
+
+    public void setMemberList(List<Member> memberList) {
+        this.memberList = memberList;
     }
 }

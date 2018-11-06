@@ -2,25 +2,28 @@ package com.splitclear.cschunsiu.splitclear.util;
 
 import android.os.AsyncTask;
 
-public abstract class DatabaseAsyncTask extends AsyncTask<Void,Void, Object> {
-    public AsyncResponse respond = null;
+public class DatabaseAsyncTask extends AsyncTask<Object,Object,Object> {
 
-    public abstract void processFinish(Object output);
-
-    public interface AsyncResponse{
-        void processFinish(Object output);
+    public interface OnTaskCompleted{
+        void onTaskCompleted();
     }
 
-    public DatabaseAsyncTask(AsyncResponse respond){
-        this.respond = respond;
+    private OnTaskCompleted listener;
+
+    public DatabaseAsyncTask(OnTaskCompleted listener){
+        this.listener = listener;
     }
+
+    protected void onPostExecute(Object o){
+        // Call the interface method
+        if (listener != null)
+            listener.onTaskCompleted();
+    }
+
     @Override
-    protected Object doInBackground(Void... voids) {
+    protected Object doInBackground(Object... params) {
+        // The sleep() is just to simulate activity and delay
+
         return null;
-    }
-
-    @Override
-    protected void onPostExecute(Object result) {
-        respond.processFinish(result);
     }
 }
