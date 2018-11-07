@@ -27,6 +27,7 @@ public class GroupRepo{
             protected Void doInBackground(Void... voids) {
                 long groupID = groupDao.insertGroup(group);
                 for(Member member : group.getMemberList()){
+                    member.setGroupsId(groupID);
                     memberDao.insertMemeber(member);
                 }
                 return null;
@@ -40,21 +41,6 @@ public class GroupRepo{
     public LiveData<Group> getGroups(int id){
         return groupDao.getGroup(id);
     }
-
-//    public void insertGroup(final Group group) {
-//        new AsyncTask<Void, Void, Void>() {
-//            @Override
-//            protected Void doInBackground(Void... voids) {
-//                long groupID = groupDao.insertGroup(group);
-//                System.out.println(groupID);
-//                List<Member> members = group.getMemberList();
-//                for (int i = 0; i < members.size(); i++) {
-//                    members.get(i).setGroupsId(groupID);
-//                }
-//                return null;
-//            }
-//        }.execute();
-//    }
 
     public void updateGroup(final Group group){
         new AsyncTask<Void, Void, Void>() {
@@ -77,18 +63,6 @@ public class GroupRepo{
                 }
             }.execute();
         }
-    }
-
-    public void insertMember(final List<Member> members){
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                for(Member member : members) {
-                    memberDao.insertMemeber(member);
-                }
-                return null;
-            }
-        }.execute();
     }
 
 }

@@ -9,13 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.model.Group;
-import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
         public void onClick(View v) {
             Log.d(TAG, "onClicked " + getAdapterPosition());
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setView(R.layout.group_children_popup);
+            builder.setView(R.layout.member_input_popup);
             builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -69,7 +67,7 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
     @NonNull
     @Override
     public GroupViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_member_layout,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_input_name_layout,parent,false);
 
         return new GroupViewHolder(itemView);
     }

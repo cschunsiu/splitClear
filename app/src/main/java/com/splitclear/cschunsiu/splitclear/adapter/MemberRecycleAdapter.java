@@ -2,7 +2,6 @@ package com.splitclear.cschunsiu.splitclear.adapter;
 
 
 import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
@@ -17,10 +16,7 @@ import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.activity.AddGroupActivity;
-import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -49,7 +45,7 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
             Log.d(TAG, "onClicked " + getAdapterPosition());
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             LayoutInflater inflater = LayoutInflater.from(context);
-            final View view = inflater.inflate(R.layout.group_children_popup,null);
+            final View view = inflater.inflate(R.layout.member_input_popup,null);
             builder.setView(view);
             builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
                 @Override
@@ -79,7 +75,7 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
     @Override
     public MemberViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.add_member_layout, parent, false);
+                .inflate(R.layout.member_input_name_layout, parent, false);
 
         return new MemberViewHolder(itemView);
     }
