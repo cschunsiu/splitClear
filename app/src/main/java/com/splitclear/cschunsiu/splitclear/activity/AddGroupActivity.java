@@ -8,11 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.splitclear.cschunsiu.splitclear.adapter.MemberRecycleAdapter;
 import com.splitclear.cschunsiu.splitclear.R;
-import com.splitclear.cschunsiu.splitclear.database.GroupRepo;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
@@ -30,7 +28,7 @@ public class AddGroupActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_group_view);
+        setContentView(R.layout.add_group_member_view);
         groupNameView = findViewById(R.id.editGroupNameField);
         initMemberList();
 
@@ -45,7 +43,7 @@ public class AddGroupActivity extends FragmentActivity {
         String text = groupNameView.getText().toString();
 
         Group group = new Group(text);
-        System.out.println("zzzzzzzzzzzzz" + group.getId());
+        System.out.println("zzzzzzzzzzzzz " + group.getId());
         memberList.remove(memberList.size()-1);
         group.setMemberList(memberList);
 

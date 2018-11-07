@@ -35,7 +35,7 @@ public interface GroupDao {
     List<Member> getMemberMethod(int groupsId);
 
     @Insert
-    int insertGroup(Group group);
+    long insertGroup(Group group);
 
     @Insert
     void insertMemberList(List<Member> members);

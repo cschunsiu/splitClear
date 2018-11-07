@@ -16,7 +16,7 @@ public class Member {
     @PrimaryKey(autoGenerate = true)
     public int id;
     public String name;
-    public int groupsId;
+    public long groupsId;
 
     public Member(){
         this.name = "Default";
@@ -26,7 +26,7 @@ public class Member {
         this.name = name;
     }
 
-    public void setGroupsId(int groupsId){
+    public void setGroupsId(long groupsId){
         this.groupsId = groupsId;
     }
 }
