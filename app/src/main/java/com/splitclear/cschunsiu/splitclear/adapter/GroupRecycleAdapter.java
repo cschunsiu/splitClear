@@ -63,6 +63,9 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
         this.groupList = groupList;
         this.context = context;
     }
+    public GroupRecycleAdapter(Context context){
+        this.context = context;
+    }
 
     @NonNull
     @Override
