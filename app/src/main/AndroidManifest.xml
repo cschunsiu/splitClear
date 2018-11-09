@@ -21,8 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-
             android:name=".activity.AddGroupActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+            android:name=".activity.GroupViewActivity"
             android:windowSoftInputMode="adjustPan">
         </activity>
     </application>
