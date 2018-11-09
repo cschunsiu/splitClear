@@ -3,6 +3,7 @@ package com.splitclear.cschunsiu.splitclear.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
+import com.splitclear.cschunsiu.splitclear.activity.AddGroupActivity;
+import com.splitclear.cschunsiu.splitclear.activity.GroupViewActivity;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 
 import java.util.List;
@@ -22,6 +25,11 @@ import static android.content.ContentValues.TAG;
 public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapter.GroupViewHolder>{
     private List<Group> groupList;
     private Context context;
+
+    public GroupRecycleAdapter(List<Group> groupList, Context context){
+        this.groupList = groupList;
+        this.context = context;
+    }
 
     public class GroupViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView showingTextView, nameTextview;
@@ -56,15 +64,9 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
 //
 //            AlertDialog dialog = builder.create();
 //            dialog.show();
+            Intent i = new Intent(context, GroupViewActivity.class);
+            context.startActivity(i);
         }
-    }
-
-    public GroupRecycleAdapter(List<Group> groupList, Context context){
-        this.groupList = groupList;
-        this.context = context;
-    }
-    public GroupRecycleAdapter(Context context){
-        this.context = context;
     }
 
     @NonNull

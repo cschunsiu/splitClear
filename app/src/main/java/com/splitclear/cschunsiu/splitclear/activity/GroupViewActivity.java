@@ -29,17 +29,17 @@ public class GroupViewActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_view);
 
-        recyclerView = findViewById(R.id.mainGroupList);
-
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-//        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Group> groups) {
-//                mAdapter.setGroup(groups);
-//            }
-//        });
-
-        setGroupRecyclerView(recyclerView);
+//        recyclerView = findViewById(R.id.mainGroupList);
+//
+//        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+////        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
+////            @Override
+////            public void onChanged(@Nullable List<Group> groups) {
+////                mAdapter.setGroup(groups);
+////            }
+////        });
+//
+//        setGroupRecyclerView(recyclerView);
     }
 
 //    public void addGroupListener(View view){
