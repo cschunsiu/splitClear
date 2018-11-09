@@ -40,22 +40,22 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
         @Override
         public void onClick(View v) {
             Log.d(TAG, "onClicked " + getAdapterPosition());
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setView(R.layout.member_input_popup);
-            builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            builder.setNegativeButton("CONFIRM", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
+//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//            builder.setView(R.layout.member_input_popup);
+//            builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    dialog.cancel();
+//                }
+//            });
+//            builder.setNegativeButton("CONFIRM", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                }
+//            });
+//
+//            AlertDialog dialog = builder.create();
+//            dialog.show();
         }
     }
 
