@@ -64,7 +64,7 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
 //
 //            AlertDialog dialog = builder.create();
 //            dialog.show();
-            Intent i = new Intent(context, GroupViewActivity.class);
+            Intent i = new Intent(context, GroupViewActivity.class).putExtra("Group", groupList.get(getAdapterPosition()));
             context.startActivity(i);
         }
     }

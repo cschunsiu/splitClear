@@ -26,10 +26,6 @@ public class MainViewModel extends AndroidViewModel {
         return GroupLists;
     }
 
-    public void insertGroups(Group group){
- //       repository.insertGroup(group);
-    }
-
     public void insertGroupAndMember (Group group){
         repository.insertGroupAndMember(group);
     }

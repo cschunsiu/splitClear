@@ -4,7 +4,7 @@ import android.arch.persistence.room.*;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "member",
+@Entity(tableName = "bill",
         foreignKeys = @ForeignKey(entity = Group.class,
                 parentColumns = "id",
                 childColumns = "groupsId",
