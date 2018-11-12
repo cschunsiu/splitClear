@@ -55,7 +55,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void setGroupRecyclerView(RecyclerView recyclerView){
-        mAdapter = new GroupRecycleAdapter(initGroupList,this);
+        mAdapter = new GroupRecycleAdapter(this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

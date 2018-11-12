@@ -26,8 +26,7 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
     private List<Group> groupList;
     private Context context;
 
-    public GroupRecycleAdapter(List<Group> groupList, Context context){
-        this.groupList = groupList;
+    public GroupRecycleAdapter(Context context){
         this.context = context;
     }
 

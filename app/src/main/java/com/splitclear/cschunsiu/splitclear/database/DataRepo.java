@@ -11,11 +11,11 @@ import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.List;
 
-public class GroupRepo{
+public class DataRepo {
     private final GroupDao groupDao;
     private final MemberDao memberDao;
 
-    public GroupRepo (Context context){
+    public DataRepo(Context context){
         DatabaseConfig db = DatabaseConfig.getDatabase(context);
         groupDao = db.groupDao();
         memberDao = db.memberDao();
