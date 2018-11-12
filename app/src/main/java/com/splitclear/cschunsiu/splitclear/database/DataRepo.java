@@ -21,6 +21,12 @@ public class DataRepo {
         memberDao = db.memberDao();
     }
 
+
+    public LiveData<List<GroupAllMembers>> testGetGroup(){return groupDao.getAllGroups();}
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void insertGroupAndMember(final Group group) {
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -35,7 +41,6 @@ public class DataRepo {
         }.execute();
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public LiveData<List<Group>> getGroup(){return groupDao.getGroupList();}
 
     public LiveData<Group> getGroups(int id){

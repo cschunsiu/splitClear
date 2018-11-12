@@ -1,8 +1,6 @@
 package com.splitclear.cschunsiu.splitclear.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
-import com.splitclear.cschunsiu.splitclear.activity.AddGroupActivity;
 import com.splitclear.cschunsiu.splitclear.activity.GroupViewActivity;
+import com.splitclear.cschunsiu.splitclear.database.GroupAllMembers;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 
 import java.util.List;
@@ -23,10 +21,11 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 
 public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapter.GroupViewHolder>{
-    private List<Group> groupList;
+    private List<GroupAllMembers> groupList;
     private Context context;
 
-    public GroupRecycleAdapter(Context context){
+    public GroupRecycleAdapter(List<GroupAllMembers> groupList, Context context){
+        this.groupList = groupList;
         this.context = context;
     }
 
@@ -63,7 +62,7 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
 //
 //            AlertDialog dialog = builder.create();
 //            dialog.show();
-            Intent i = new Intent(context, GroupViewActivity.class).putExtra("Group", groupList.get(getAdapterPosition()));
+            Intent i = new Intent(context, GroupViewActivity.class);
             context.startActivity(i);
         }
     }
@@ -71,14 +70,14 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
     @NonNull
     @Override
     public GroupViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_input_name_layout,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_item_list_layout,parent,false);
 
         return new GroupViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
-        String member = groupList.get(position).name;
+        String member = groupList.get(position).group.name;
         holder.showingTextView.setVisibility(View.GONE);
         holder.icon.setVisibility(View.GONE);
         holder.nameTextview.setText(member);
@@ -89,7 +88,7 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
         return groupList.size();
     }
 
-    public void setGroup(List<Group> group) {
+    public void setGroup(List<GroupAllMembers> group) {
         groupList = group;
         notifyDataSetChanged();
     }

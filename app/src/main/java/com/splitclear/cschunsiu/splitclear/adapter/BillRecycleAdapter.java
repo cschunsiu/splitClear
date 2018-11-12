@@ -1,22 +1,17 @@
 package com.splitclear.cschunsiu.splitclear.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
-import com.splitclear.cschunsiu.splitclear.activity.AddGroupActivity;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
-import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.List;
 
@@ -55,7 +50,7 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
     @Override
     public BillViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.member_input_name_layout, parent, false);
+                .inflate(R.layout.display_item_list_layout, parent, false);
 
         return new BillViewHolder(itemView);
     }

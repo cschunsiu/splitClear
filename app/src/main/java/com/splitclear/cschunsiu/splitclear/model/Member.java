@@ -29,4 +29,8 @@ public class Member {
     public void setGroupsId(long groupsId){
         this.groupsId = groupsId;
     }
+
+    public String getName(){
+        return name;
+    }
 }
