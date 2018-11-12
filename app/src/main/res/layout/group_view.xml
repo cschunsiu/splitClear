@@ -29,6 +29,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:onClick="addBillListener"
         android:text="Add Bill"
         app:layout_constraintEnd_toStartOf="@+id/showBalanceButton"
         app:layout_constraintStart_toStartOf="parent"

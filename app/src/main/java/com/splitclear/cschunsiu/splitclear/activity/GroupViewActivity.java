@@ -54,4 +54,9 @@ public class GroupViewActivity extends FragmentActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
     }
+
+    public void addBillListener(View view){
+        Intent i = new Intent(this, AddBillActivity.class);
+        startActivity(i);
+    }
 }
