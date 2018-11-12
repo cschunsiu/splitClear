@@ -14,16 +14,16 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
     private GroupRepo repository;
-    private LiveData<List<Group>> resultSample;
+    private LiveData<List<Group>> GroupLists;
 
     public MainViewModel(Application application) {
         super(application);
         repository = new GroupRepo(this.getApplication());
-        resultSample = repository.getGroup();
+        GroupLists = repository.getGroup();
     }
 
     public LiveData<List<Group>> getGroupList(){
-        return resultSample;
+        return GroupLists;
     }
 
     public void insertGroups(Group group){
