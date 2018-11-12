@@ -11,16 +11,22 @@ import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.List;
 
-public class GroupRepo{
+public class DataRepo {
     private final GroupDao groupDao;
     private final MemberDao memberDao;
 
-    public GroupRepo (Context context){
+    public DataRepo(Context context){
         DatabaseConfig db = DatabaseConfig.getDatabase(context);
         groupDao = db.groupDao();
         memberDao = db.memberDao();
     }
 
+
+    public LiveData<List<GroupAllMembers>> testGetGroup(){return groupDao.getAllGroups();}
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void insertGroupAndMember(final Group group) {
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -35,7 +41,6 @@ public class GroupRepo{
         }.execute();
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     public LiveData<List<Group>> getGroup(){return groupDao.getGroupList();}
 
     public LiveData<Group> getGroups(int id){

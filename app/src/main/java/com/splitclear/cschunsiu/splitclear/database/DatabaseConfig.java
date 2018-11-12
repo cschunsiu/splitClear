@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.splitclear.cschunsiu.splitclear.database.dao.BillDao;
 import com.splitclear.cschunsiu.splitclear.database.dao.GroupDao;
 import com.splitclear.cschunsiu.splitclear.database.dao.MemberDao;
 import com.splitclear.cschunsiu.splitclear.model.Group;
@@ -16,6 +17,7 @@ public abstract class DatabaseConfig extends RoomDatabase {
     private static DatabaseConfig INSTANCE;
     public abstract GroupDao groupDao();
     public abstract MemberDao memberDao();
+    public abstract BillDao billDao();
 
     public static DatabaseConfig getDatabase(final Context context) {
         if (INSTANCE == null) {

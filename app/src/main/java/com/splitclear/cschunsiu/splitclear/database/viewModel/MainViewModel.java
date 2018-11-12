@@ -3,34 +3,35 @@ package com.splitclear.cschunsiu.splitclear.database.viewModel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.support.annotation.NonNull;
 
+import com.splitclear.cschunsiu.splitclear.database.DataRepo;
 import com.splitclear.cschunsiu.splitclear.database.GroupAllMembers;
-import com.splitclear.cschunsiu.splitclear.database.GroupRepo;
 import com.splitclear.cschunsiu.splitclear.model.Group;
-import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
-    private GroupRepo repository;
+    private DataRepo dataRepo;
     private LiveData<List<Group>> GroupLists;
+    ////
+    private LiveData<List<GroupAllMembers>> testObject;
 
     public MainViewModel(Application application) {
         super(application);
-        repository = new GroupRepo(this.getApplication());
-        GroupLists = repository.getGroup();
+        dataRepo = new DataRepo(this.getApplication());
+        GroupLists = dataRepo.getGroup();
+        testObject = dataRepo.testGetGroup();
     }
 
     public LiveData<List<Group>> getGroupList(){
         return GroupLists;
     }
 
-    public void insertGroups(Group group){
- //       repository.insertGroup(group);
+    public LiveData<List<GroupAllMembers>> TestgetGroupList(){
+        return testObject;
     }
 
     public void insertGroupAndMember (Group group){
-        repository.insertGroupAndMember(group);
+        dataRepo.insertGroupAndMember(group);
     }
 }

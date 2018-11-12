@@ -26,8 +26,8 @@ import java.util.List;
 
 public class MainActivity extends FragmentActivity {
     private MainViewModel mainViewModel;
+    private List<GroupAllMembers> groupList = new ArrayList<>();
     private GroupRecycleAdapter mAdapter;
-    private List<Group> initGroupList = new ArrayList();
     private RecyclerView recyclerView;
 
     @Override
@@ -36,16 +36,22 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.mainGroupList);
-
+        setGroupRecyclerView(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
+//        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
+//            @Override
+//            public void onChanged(@Nullable List<Group> groups) {
+//                mAdapter.setGroup(groups);
+//            }
+//        });
+
+        mainViewModel.TestgetGroupList().observe(MainActivity.this, new Observer<List<GroupAllMembers>>() {
             @Override
-            public void onChanged(@Nullable List<Group> groups) {
-                mAdapter.setGroup(groups);
+            public void onChanged(@Nullable List<GroupAllMembers> groups) {
+                    mAdapter.setGroup(groups);
             }
         });
 
-        setGroupRecyclerView(recyclerView);
      }
 
      //Add Group Button Function
@@ -55,7 +61,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void setGroupRecyclerView(RecyclerView recyclerView){
-        mAdapter = new GroupRecycleAdapter(initGroupList,this);
+        mAdapter = new GroupRecycleAdapter(groupList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

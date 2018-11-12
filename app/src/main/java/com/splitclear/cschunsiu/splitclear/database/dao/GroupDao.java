@@ -16,8 +16,8 @@ import java.util.List;
 
 @Dao
 public interface GroupDao {
-//    @Query("Select * from `Group`")
-//    GroupAllMembers getAllGroups();
+    @Query("Select * from `Group`")
+    LiveData<List<GroupAllMembers>> getAllGroups();
 
     @Query("Select * from `Group`")
     LiveData<List<Group>> getGroupList();
