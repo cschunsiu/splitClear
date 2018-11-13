@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.activity.GroupViewActivity;
-import com.splitclear.cschunsiu.splitclear.database.GroupAllMembers;
 import com.splitclear.cschunsiu.splitclear.model.Group;
-import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.List;
 
