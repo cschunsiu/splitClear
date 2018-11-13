@@ -1,8 +1,10 @@
 package com.splitclear.cschunsiu.splitclear.activity;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +17,7 @@ import com.splitclear.cschunsiu.splitclear.adapter.GroupRecycleAdapter;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
+import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +26,7 @@ public class GroupViewActivity extends FragmentActivity {
     private MainViewModel mainViewModel;
     private BillRecycleAdapter mAdapter;
     private RecyclerView recyclerView;
-    private List<Bill> bills;
+    private List<Bill> bills = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +34,20 @@ public class GroupViewActivity extends FragmentActivity {
         setContentView(R.layout.group_view);
         Intent intent = getIntent();
         Group group = intent.getParcelableExtra("Group");
-        System.out.println(group.getName() + group.getId());
+        System.out.println(group.getName() + " " + group.getId());
 
-        recyclerView = findViewById(R.id.mainGroupList);
-
+        recyclerView = findViewById(R.id.group_view_bill_list);
+        setBillsRecyclerView(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-//        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Group> groups) {
-//                mAdapter.setGroup(groups);
-//            }
-//        });
+        mainViewModel.getBillList().observe(this, new Observer<List<Bill>>() {
+            @Override
+            public void onChanged(@Nullable List<Bill> bills) {
+                //mAdapter.set(groups);
+            }
+        });
 
-        setGroupRecyclerView(recyclerView);
+        List<Member> members = mainViewModel.getMemberList(group);
+        System.out.println(members);
     }
 
 //    public void addGroupListener(View view){
@@ -51,7 +55,7 @@ public class GroupViewActivity extends FragmentActivity {
 //        startActivity(i);
 //    }
 
-    public void setGroupRecyclerView(RecyclerView recyclerView){
+    public void setBillsRecyclerView(RecyclerView recyclerView){
         mAdapter = new BillRecycleAdapter(bills,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);

@@ -4,13 +4,15 @@ import android.arch.persistence.room.*;
 
 import com.splitclear.cschunsiu.splitclear.model.Member;
 
+import java.util.List;
+
 @Dao
 public interface MemberDao {
-//    @Query("Select * from `Group` where id=:groupsId")
-//    LiveData<Group> getGroup(int groupsId);
+    @Query("Select * from `member` where id=:groupsId")
+    List<Member> getMembers(int groupsId);
 
     @Insert
-    void insertMemeber(Member... member);
+    long insertMember(Member member);
 
     @Delete
     void deleteMember(Member member);

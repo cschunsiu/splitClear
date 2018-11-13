@@ -1,6 +1,5 @@
 package com.splitclear.cschunsiu.splitclear.activity;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -11,13 +10,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.adapter.GroupRecycleAdapter;
-import com.splitclear.cschunsiu.splitclear.adapter.MemberRecycleAdapter;
-import com.splitclear.cschunsiu.splitclear.database.GroupAllMembers;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 
@@ -26,7 +21,7 @@ import java.util.List;
 
 public class MainActivity extends FragmentActivity {
     private MainViewModel mainViewModel;
-    private List<GroupAllMembers> groupList = new ArrayList<>();
+    private List<Group> groupList = new ArrayList<>();
     private GroupRecycleAdapter mAdapter;
     private RecyclerView recyclerView;
 
@@ -38,20 +33,12 @@ public class MainActivity extends FragmentActivity {
         recyclerView = findViewById(R.id.mainGroupList);
         setGroupRecyclerView(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-//        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Group> groups) {
-//                mAdapter.setGroup(groups);
-//            }
-//        });
-
-        mainViewModel.TestgetGroupList().observe(MainActivity.this, new Observer<List<GroupAllMembers>>() {
+        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
             @Override
-            public void onChanged(@Nullable List<GroupAllMembers> groups) {
-                    mAdapter.setGroup(groups);
+            public void onChanged(@Nullable List<Group> groups) {
+                mAdapter.setGroup(groups);
             }
         });
-
      }
 
      //Add Group Button Function

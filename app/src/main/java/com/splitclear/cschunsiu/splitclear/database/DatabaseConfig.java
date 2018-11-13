@@ -8,10 +8,11 @@ import android.content.Context;
 import com.splitclear.cschunsiu.splitclear.database.dao.BillDao;
 import com.splitclear.cschunsiu.splitclear.database.dao.GroupDao;
 import com.splitclear.cschunsiu.splitclear.database.dao.MemberDao;
+import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
 
-@Database(entities = {Group.class, Member.class}, version = 1, exportSchema = false)
+@Database(entities = {Group.class, Member.class, Bill.class}, version = 1, exportSchema = false)
 public abstract class DatabaseConfig extends RoomDatabase {
     private static final String DATABASE_NAME = "split-clear-db";
     private static DatabaseConfig INSTANCE;
