@@ -23,7 +23,7 @@ public class GroupViewActivity extends FragmentActivity {
     private MainViewModel mainViewModel;
     private BillRecycleAdapter mAdapter;
     private RecyclerView recyclerView;
-    private List<Bill> bills;
+    private List<Bill> bills = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +31,10 @@ public class GroupViewActivity extends FragmentActivity {
         setContentView(R.layout.group_view);
         Intent intent = getIntent();
         Group group = intent.getParcelableExtra("Group");
-        System.out.println(group.getName() + group.getId());
+        System.out.println(group.getName() + " " + group.getId());
 
-        recyclerView = findViewById(R.id.mainGroupList);
-
+        recyclerView = findViewById(R.id.group_view_bill_list);
+        setGroupRecyclerView(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 //        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
 //            @Override
@@ -43,7 +43,6 @@ public class GroupViewActivity extends FragmentActivity {
 //            }
 //        });
 
-        setGroupRecyclerView(recyclerView);
     }
 
 //    public void addGroupListener(View view){

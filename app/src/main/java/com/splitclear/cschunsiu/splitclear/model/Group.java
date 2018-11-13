@@ -25,7 +25,8 @@ public class Group implements Parcelable{
     }
 
     public Group(Parcel parcel){
-       name = parcel.readString();
+        id = parcel.readInt();
+        name = parcel.readString();
     }
 
     public String getName() {
@@ -55,6 +56,7 @@ public class Group implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(name);
     }
 

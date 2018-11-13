@@ -26,7 +26,7 @@ import java.util.List;
 
 public class MainActivity extends FragmentActivity {
     private MainViewModel mainViewModel;
-    private List<GroupAllMembers> groupList = new ArrayList<>();
+    private List<Group> groupList = new ArrayList<>();
     private GroupRecycleAdapter mAdapter;
     private RecyclerView recyclerView;
 
@@ -38,20 +38,12 @@ public class MainActivity extends FragmentActivity {
         recyclerView = findViewById(R.id.mainGroupList);
         setGroupRecyclerView(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-//        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Group> groups) {
-//                mAdapter.setGroup(groups);
-//            }
-//        });
-
-        mainViewModel.TestgetGroupList().observe(MainActivity.this, new Observer<List<GroupAllMembers>>() {
+        mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {
             @Override
-            public void onChanged(@Nullable List<GroupAllMembers> groups) {
-                    mAdapter.setGroup(groups);
+            public void onChanged(@Nullable List<Group> groups) {
+                mAdapter.setGroup(groups);
             }
         });
-
      }
 
      //Add Group Button Function
