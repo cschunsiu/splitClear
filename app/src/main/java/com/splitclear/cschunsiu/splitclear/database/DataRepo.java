@@ -10,13 +10,17 @@ import com.splitclear.cschunsiu.splitclear.database.dao.MemberDao;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
+import com.splitclear.cschunsiu.splitclear.util.OnTaskComplete;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class DataRepo {
+public class DataRepo implements OnTaskComplete{
     private final GroupDao groupDao;
     private final MemberDao memberDao;
     private final BillDao billDao;
+
+    private List<Group> jii;
 
     public DataRepo(Context context){
         DatabaseConfig db = DatabaseConfig.getDatabase(context);
@@ -52,6 +56,32 @@ public class DataRepo {
 
     public LiveData<List<Bill>> getBill(){return billDao.getBillList();}
 
-    public List<Member> getMembers(Group group){return memberDao.getMembers(group.getId());}
+    public List<Member> getMembers(final Group group){
+        LoadData d = new LoadData();
+        d.onComplete = this;
+        d.execute(group);
 
+        return null;
+    }
+
+    @Override
+    public void onOutput(List<Group> result) {
+        jii = result;
+        System.out.println(jii);
+    }
+
+    public class LoadData extends AsyncTask<Group, Void, List<Group>> {
+        private OnTaskComplete onComplete =null;
+
+        @Override
+        protected List<Group> doInBackground(Group... groups) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<Group> result){
+            onComplete.onOutput(result);
+
+        }
+    }
 }

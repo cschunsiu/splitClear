@@ -8,7 +8,7 @@ import java.util.List;
 
 @Dao
 public interface MemberDao {
-    @Query("Select * from `member` where id=:groupsId")
+    @Query("Select * from `Member` where id=:groupsId")
     List<Member> getMembers(int groupsId);
 
     @Insert
