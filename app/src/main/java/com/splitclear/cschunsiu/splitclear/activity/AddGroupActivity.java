@@ -42,8 +42,8 @@ public class AddGroupActivity extends FragmentActivity {
     public void captureGroupData(View view){
         String text = groupNameView.getText().toString();
 
+
         Group group = new Group(text);
-        System.out.println("zzzzzzzzzzzzz " + group.getId());
         memberList.remove(memberList.size()-1);
         group.setMemberList(memberList);
 

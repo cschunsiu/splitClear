@@ -18,11 +18,12 @@ import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
+import com.splitclear.cschunsiu.splitclear.util.OnTaskComplete;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupViewActivity extends FragmentActivity {
+public class GroupViewActivity extends FragmentActivity{
     private MainViewModel mainViewModel;
     private BillRecycleAdapter mAdapter;
     private RecyclerView recyclerView;

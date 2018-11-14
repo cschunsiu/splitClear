@@ -7,11 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "member",
-        foreignKeys = @ForeignKey(entity = Group.class,
-        parentColumns = "id",
-        childColumns = "groupsId",
-        onDelete = CASCADE))
+@Entity
 public class Member {
     @PrimaryKey(autoGenerate = true)
     public int id;
