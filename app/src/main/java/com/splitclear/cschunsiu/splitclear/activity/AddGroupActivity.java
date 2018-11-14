@@ -22,7 +22,7 @@ public class AddGroupActivity extends FragmentActivity {
     private EditText groupNameView;
     private RecyclerView recyclerView;
     private MemberRecycleAdapter mAdapter;
-    public static List<Member> memberList  = new ArrayList();
+    public List<Member> memberList  = new ArrayList();
     MainViewModel mainViewModel;
 
     @Override
@@ -42,13 +42,11 @@ public class AddGroupActivity extends FragmentActivity {
     public void captureGroupData(View view){
         String text = groupNameView.getText().toString();
 
-
         Group group = new Group(text);
         memberList.remove(memberList.size()-1);
-        group.setMemberList(memberList);
+        group.setMemberList(new ArrayList<>(memberList));
 
         mainViewModel.insertGroupAndMember(group);
-
         memberList.clear();
         finish();
     }
