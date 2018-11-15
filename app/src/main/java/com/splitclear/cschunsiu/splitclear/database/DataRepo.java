@@ -2,7 +2,10 @@ package com.splitclear.cschunsiu.splitclear.database;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.splitclear.cschunsiu.splitclear.database.dao.BillDao;
 import com.splitclear.cschunsiu.splitclear.database.dao.GroupDao;
@@ -10,9 +13,9 @@ import com.splitclear.cschunsiu.splitclear.database.dao.MemberDao;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
+import com.splitclear.cschunsiu.splitclear.util.GetMembersAsync;
 import com.splitclear.cschunsiu.splitclear.util.OnTaskComplete;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataRepo implements OnTaskComplete{
@@ -20,7 +23,8 @@ public class DataRepo implements OnTaskComplete{
     private final MemberDao memberDao;
     private final BillDao billDao;
 
-    private List<Group> jii;
+    private List<Member> members;
+    private List<Bill> bills;
 
     public DataRepo(Context context){
         DatabaseConfig db = DatabaseConfig.getDatabase(context);
@@ -57,31 +61,14 @@ public class DataRepo implements OnTaskComplete{
     public LiveData<List<Bill>> getBill(){return billDao.getBillList();}
 
     public List<Member> getMembers(final Group group){
-        LoadData d = new LoadData();
-        d.onComplete = this;
-        d.execute(group);
+        GetMembersAsync gma = new GetMembersAsync(this,group,memberDao);
+        gma.execute();
 
-        return null;
+        return members;
     }
 
     @Override
-    public void onOutput(List<Group> result) {
-        jii = result;
-        System.out.println(jii);
-    }
-
-    public class LoadData extends AsyncTask<Group, Void, List<Group>> {
-        private OnTaskComplete onComplete =null;
-
-        @Override
-        protected List<Group> doInBackground(Group... groups) {
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(List<Group> result){
-            onComplete.onOutput(result);
-
-        }
+    public void onOutput(List<Member> result) {
+        members = result;
     }
 }

@@ -22,7 +22,7 @@ public class AddGroupActivity extends FragmentActivity {
     private EditText groupNameView;
     private RecyclerView recyclerView;
     private MemberRecycleAdapter mAdapter;
-    public List<Member> memberList  = new ArrayList();
+    private List<Member> memberList  = new ArrayList();
     MainViewModel mainViewModel;
 
     @Override

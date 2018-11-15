@@ -14,7 +14,7 @@ import com.splitclear.cschunsiu.splitclear.model.Member;
 
 @Database(entities = {Group.class, Member.class, Bill.class}, version = 1, exportSchema = false)
 public abstract class DatabaseConfig extends RoomDatabase {
-    private static final String DATABASE_NAME = "split-clear-db";
+    private static final String DATABASE_NAME = "split-clear-db.db";
     private static DatabaseConfig INSTANCE;
     public abstract GroupDao groupDao();
     public abstract MemberDao memberDao();

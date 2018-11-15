@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 public class Group implements Parcelable{
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
     @NonNull
     public String name;
     @Ignore
@@ -25,7 +25,7 @@ public class Group implements Parcelable{
     }
 
     public Group(Parcel parcel){
-        id = parcel.readInt();
+        id = parcel.readLong();
         name = parcel.readString();
     }
 
@@ -37,7 +37,7 @@ public class Group implements Parcelable{
         this.name = name;
     }
 
-    public int getId(){
+    public long getId(){
         return id;
     }
 
@@ -56,7 +56,7 @@ public class Group implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        dest.writeLong(id);
         dest.writeString(name);
     }
 
