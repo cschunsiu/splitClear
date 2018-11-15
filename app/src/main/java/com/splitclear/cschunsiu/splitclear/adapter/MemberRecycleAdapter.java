@@ -27,6 +27,11 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
     private List<Member> memberList;
     private Context context;
 
+    public MemberRecycleAdapter(List<Member> memberList, Context context){
+        this.memberList = memberList;
+        this.context = context;
+    }
+
     public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView showingTextView, nameTextview;
         ImageView icon;
@@ -66,11 +71,6 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         }
     }
 
-    public MemberRecycleAdapter(List<Member> memberList, Context context){
-        this.memberList = memberList;
-        this.context = context;
-    }
-
     @NonNull
     @Override
     public MemberViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -103,7 +103,7 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         if(memberList.size() < 10){
             memberList.add(new Member());
         }
-        AddGroupActivity.memberList = memberList;
+
         notifyDataSetChanged();
     }
 }

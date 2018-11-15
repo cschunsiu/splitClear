@@ -1,19 +1,25 @@
 package com.splitclear.cschunsiu.splitclear.model;
 
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 @Entity
 public class Member {
+    @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public Long id;
+    @ColumnInfo(name = "name")
     public String name;
-    public long groupsId;
+    @ColumnInfo(name = "groupsId")
+    public Long groupsId;
 
+    @Ignore
     public Member(){
         this.name = "Default";
     }

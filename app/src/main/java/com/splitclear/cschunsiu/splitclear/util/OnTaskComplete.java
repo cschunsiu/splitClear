@@ -6,5 +6,5 @@ import com.splitclear.cschunsiu.splitclear.model.Member;
 import java.util.List;
 
 public interface OnTaskComplete {
-    void onOutput(List<Group> result);
+    void onOutput(List<Member> result);
 }

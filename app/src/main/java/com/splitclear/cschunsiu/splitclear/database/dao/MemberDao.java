@@ -1,6 +1,7 @@
 package com.splitclear.cschunsiu.splitclear.database.dao;
 
 import android.arch.persistence.room.*;
+import android.database.Cursor;
 
 import com.splitclear.cschunsiu.splitclear.model.Member;
 
@@ -8,8 +9,11 @@ import java.util.List;
 
 @Dao
 public interface MemberDao {
-    @Query("Select * from `Member` where id=:groupsId")
-    List<Member> getMembers(int groupsId);
+    @Query("Select * from `Member` where groupsId = :groupsId")
+    List<Member> getMembers(Long groupsId);
+
+    @Query("Select * from `Member`")
+    Cursor TESgetMembers();
 
     @Insert
     long insertMember(Member member);
