@@ -26,7 +26,6 @@ public abstract class DatabaseConfig extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             DatabaseConfig.class, DATABASE_NAME)
-                            //.addCallback(DatabaseCallBack)
                             .build();
                 }
             }
@@ -34,12 +33,4 @@ public abstract class DatabaseConfig extends RoomDatabase {
         return INSTANCE;
     }
 
-//    private static RoomDatabase.Callback DatabaseCallBack =
-//            new RoomDatabase.Callback(){
-//
-//                @Override
-//                public void onOpen (@NonNull SupportSQLiteDatabase db){
-//                    super.onOpen(db);
-//                }
-//            };
 }

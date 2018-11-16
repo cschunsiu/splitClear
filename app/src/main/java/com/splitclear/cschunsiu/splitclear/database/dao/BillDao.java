@@ -9,6 +9,7 @@ import java.util.List;
 
 @Dao
 public interface BillDao {
+    //TODO To be implemented
     @Query("Select * from `bill`")
     LiveData<List<Bill>> getBillList();
 

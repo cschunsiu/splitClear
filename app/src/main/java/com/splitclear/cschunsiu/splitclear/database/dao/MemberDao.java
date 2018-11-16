@@ -12,9 +12,6 @@ public interface MemberDao {
     @Query("Select * from `Member` where groupsId = :groupsId")
     List<Member> getMembers(Long groupsId);
 
-    @Query("Select * from `Member`")
-    Cursor TESgetMembers();
-
     @Insert
     long insertMember(Member member);
 

@@ -39,9 +39,9 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         public MemberViewHolder(View itemView){
             super(itemView);
 
-            showingTextView = (TextView)itemView.findViewById(R.id.group_children_edittext);
-            nameTextview = (TextView)itemView.findViewById(R.id.group_children_postMemberName);
-            icon = (ImageView) itemView.findViewById(R.id.group_children_image);
+            showingTextView = itemView.findViewById(R.id.group_children_edittext);
+            nameTextview = itemView.findViewById(R.id.group_children_postMemberName);
+            icon = itemView.findViewById(R.id.group_children_image);
             itemView.setOnClickListener(this);
         }
 
@@ -103,7 +103,6 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
         if(memberList.size() < 10){
             memberList.add(new Member());
         }
-
         notifyDataSetChanged();
     }
 }

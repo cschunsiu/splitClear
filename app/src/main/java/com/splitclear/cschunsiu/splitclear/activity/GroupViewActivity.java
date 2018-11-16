@@ -40,7 +40,7 @@ public class GroupViewActivity extends FragmentActivity{
         mainViewModel.getBillList().observe(this, new Observer<List<Bill>>() {
             @Override
             public void onChanged(@Nullable List<Bill> bills) {
-                //mAdapter.set(groups);
+                //TODO change Bill Adapter Behavior
             }
         });
 
