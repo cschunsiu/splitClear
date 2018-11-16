@@ -27,6 +27,8 @@ public class Group implements Parcelable{
     public Group(Parcel parcel){
         id = parcel.readLong();
         name = parcel.readString();
+        memberList = new ArrayList<>();
+        parcel.readTypedList(memberList, Member.CREATOR);
     }
 
     public String getName() {
@@ -58,6 +60,7 @@ public class Group implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(id);
         dest.writeString(name);
+        dest.writeTypedList(memberList);
     }
 
     public static final Parcelable.Creator<Group> CREATOR = new Parcelable.Creator<Group>(){

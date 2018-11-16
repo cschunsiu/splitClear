@@ -24,6 +24,7 @@ public class GroupViewActivity extends FragmentActivity{
     private MainViewModel mainViewModel;
     private BillRecycleAdapter mAdapter;
     private RecyclerView recyclerView;
+    private Group selectedGroup;
     private List<Bill> bills = new ArrayList<>();
 
     @Override
@@ -31,8 +32,8 @@ public class GroupViewActivity extends FragmentActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_view);
         Intent intent = getIntent();
-        Group group = intent.getParcelableExtra("Group");
-        System.out.println(group.getName() + " " + group.getId());
+        selectedGroup = intent.getParcelableExtra("Group");
+        System.out.println(selectedGroup.getName() + " " + selectedGroup.getId());
 
         recyclerView = findViewById(R.id.group_view_billList);
         setBillsRecyclerView(recyclerView);
@@ -44,7 +45,7 @@ public class GroupViewActivity extends FragmentActivity{
             }
         });
 
-        group.setMemberList(mainViewModel.getMemberList(group));
+        selectedGroup.setMemberList(mainViewModel.getMemberList(selectedGroup));
     }
 
     public void setBillsRecyclerView(RecyclerView recyclerView){
@@ -56,7 +57,7 @@ public class GroupViewActivity extends FragmentActivity{
     }
 
     public void addBillListener(View view){
-        Intent i = new Intent(this, AddBillActivity.class);
+        Intent i = new Intent(this, AddBillActivity.class).putExtra("Group with Members", selectedGroup);
         startActivity(i);
     }
 }
