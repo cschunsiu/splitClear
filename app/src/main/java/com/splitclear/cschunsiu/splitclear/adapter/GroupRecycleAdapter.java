@@ -36,7 +36,7 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
             super(itemView);
 
             showingTextView = itemView.findViewById(R.id.group_children_edittext);
-            nameTextview = itemView.findViewById(R.id.postMemberName);
+            nameTextview = itemView.findViewById(R.id.group_children_postMemberName);
             icon = itemView.findViewById(R.id.group_children_image);
 
             itemView.setOnClickListener(this);

@@ -29,10 +29,10 @@ public class AddGroupActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_group_member_view);
-        groupNameView = findViewById(R.id.editGroupNameField);
+        groupNameView = findViewById(R.id.add_member_groupName);
         initMemberList();
 
-        recyclerView = findViewById(R.id.addGroupMemberList);
+        recyclerView = findViewById(R.id.add_member_memberList);
         setRecyclerViewListener(recyclerView);
 
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);

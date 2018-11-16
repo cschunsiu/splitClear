@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.mainGroupList);
+        recyclerView = findViewById(R.id.main_view_GroupList);
         setGroupRecyclerView(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getGroupList().observe(MainActivity.this, new Observer<List<Group>>() {

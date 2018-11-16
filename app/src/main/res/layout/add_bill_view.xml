@@ -7,9 +7,9 @@
     tools:layout_editor_absoluteY="81dp">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/add_bill_addBillFAB"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
@@ -32,6 +32,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/add_bill_addBillName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Please Enter Bill Name"
@@ -52,6 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/add_bill_addBillAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Please Enter Bill Amount"
@@ -73,21 +75,21 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/add_bill_addBillEvenButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Even" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/add_bill_addBillCustomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Custom" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/add_bill_addBillPercentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -95,6 +97,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/add_bill_billListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

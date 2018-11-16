@@ -30,7 +30,7 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
             super(itemView);
 
             showingTextView = (TextView)itemView.findViewById(R.id.group_children_edittext);
-            nameTextview = (TextView)itemView.findViewById(R.id.postMemberName);
+            nameTextview = (TextView)itemView.findViewById(R.id.group_children_postMemberName);
             icon = (ImageView) itemView.findViewById(R.id.group_children_image);
             itemView.setOnClickListener(this);
         }

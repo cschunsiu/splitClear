@@ -34,7 +34,7 @@ public class GroupViewActivity extends FragmentActivity{
         Group group = intent.getParcelableExtra("Group");
         System.out.println(group.getName() + " " + group.getId());
 
-        recyclerView = findViewById(R.id.group_view_bill_list);
+        recyclerView = findViewById(R.id.group_view_billList);
         setBillsRecyclerView(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getBillList().observe(this, new Observer<List<Bill>>() {
