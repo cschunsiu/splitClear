@@ -2,10 +2,7 @@ package com.splitclear.cschunsiu.splitclear.database;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.splitclear.cschunsiu.splitclear.database.dao.BillDao;
 import com.splitclear.cschunsiu.splitclear.database.dao.GroupDao;
@@ -13,12 +10,10 @@ import com.splitclear.cschunsiu.splitclear.database.dao.MemberDao;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
-import com.splitclear.cschunsiu.splitclear.util.GetMembersAsync;
-import com.splitclear.cschunsiu.splitclear.util.OnTaskComplete;
 
 import java.util.List;
 
-public class DataRepo implements OnTaskComplete{
+public class DataRepo{
     private final GroupDao groupDao;
     private final MemberDao memberDao;
     private final BillDao billDao;
@@ -61,14 +56,16 @@ public class DataRepo implements OnTaskComplete{
     public LiveData<List<Bill>> getBill(){return billDao.getBillList();}
 
     public List<Member> getMembers(final Group group){
-        GetMembersAsync gma = new GetMembersAsync(this,group,memberDao);
-        gma.execute();
-
-        return members;
-    }
-
-    @Override
-    public void onOutput(List<Member> result) {
-        members = result;
+        try {
+            return new AsyncTask<Void, Void, List<Member>>() {
+                @Override
+                protected List<Member> doInBackground(Void... voids) {
+                    return memberDao.getMembers(group.id);
+                }
+            }.execute().get();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
     }
 }

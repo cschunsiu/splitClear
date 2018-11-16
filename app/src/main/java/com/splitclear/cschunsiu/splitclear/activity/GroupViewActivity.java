@@ -13,12 +13,9 @@ import android.view.View;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.adapter.BillRecycleAdapter;
-import com.splitclear.cschunsiu.splitclear.adapter.GroupRecycleAdapter;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
-import com.splitclear.cschunsiu.splitclear.model.Member;
-import com.splitclear.cschunsiu.splitclear.util.OnTaskComplete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,14 +44,8 @@ public class GroupViewActivity extends FragmentActivity{
             }
         });
 
-        List<Member> members = mainViewModel.getMemberList(group);
-        System.out.println(members);
+        group.setMemberList(mainViewModel.getMemberList(group));
     }
-
-//    public void addGroupListener(View view){
-//        Intent i = new Intent(this, AddGroupActivity.class);
-//        startActivity(i);
-//    }
 
     public void setBillsRecyclerView(RecyclerView recyclerView){
         mAdapter = new BillRecycleAdapter(bills,this);
