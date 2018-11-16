@@ -56,15 +56,6 @@ public class DataRepo{
     public LiveData<List<Bill>> getBill(){return billDao.getBillList();}
 
     public List<Member> getMembers(final Group group){
-//        GetMembersAsync gma = new GetMembersAsync(this,group,memberDao);
-//        try {
-//            gma.execute();
-//            return members;
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-//
-//        return null;
         try {
             return new AsyncTask<Void, Void, List<Member>>() {
                 @Override

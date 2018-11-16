@@ -9,6 +9,6 @@ public class AddBillActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.group_view);
+        setContentView(R.layout.add_bill_view);
     }
 }

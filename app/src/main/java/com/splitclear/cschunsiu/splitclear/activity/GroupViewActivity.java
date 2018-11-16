@@ -47,11 +47,6 @@ public class GroupViewActivity extends FragmentActivity{
         group.setMemberList(mainViewModel.getMemberList(group));
     }
 
-//    public void addGroupListener(View view){
-//        Intent i = new Intent(this, AddGroupActivity.class);
-//        startActivity(i);
-//    }
-
     public void setBillsRecyclerView(RecyclerView recyclerView){
         mAdapter = new BillRecycleAdapter(bills,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -61,7 +56,7 @@ public class GroupViewActivity extends FragmentActivity{
     }
 
     public void addBillListener(View view){
-//        Intent i = new Intent(this, AddBillActivity.class);
-//        startActivity(i);
+        Intent i = new Intent(this, AddBillActivity.class);
+        startActivity(i);
     }
 }
