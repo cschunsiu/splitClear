@@ -17,12 +17,10 @@ public interface GroupDao {
     @Query("Select * from `Group`")
     LiveData<List<Group>> getGroupList();
 
-    @Query("Select * from `Group` where id=:groupsId")
-    LiveData<Group> getGroup(int groupsId);
-
     @Insert
     long insertGroup(Group group);
 
+    //TODO implete delete and update
     @Delete
     void deleteGroup(Group group);
 

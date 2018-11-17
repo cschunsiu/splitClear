@@ -18,9 +18,6 @@ public class DataRepo{
     private final MemberDao memberDao;
     private final BillDao billDao;
 
-    private List<Member> members;
-    private List<Bill> bills;
-
     public DataRepo(Context context){
         DatabaseConfig db = DatabaseConfig.getDatabase(context);
         groupDao = db.groupDao();

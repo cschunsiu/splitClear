@@ -22,6 +22,11 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
     private List<Bill> billList;
     private Context context;
 
+    public BillRecycleAdapter(List<Bill> billList, Context context){
+        this.billList = billList;
+        this.context = context;
+    }
+
     public class BillViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView showingTextView, nameTextview;
         ImageView icon;
@@ -30,7 +35,7 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
             super(itemView);
 
             showingTextView = (TextView)itemView.findViewById(R.id.group_children_edittext);
-            nameTextview = (TextView)itemView.findViewById(R.id.postMemberName);
+            nameTextview = (TextView)itemView.findViewById(R.id.group_children_postMemberName);
             icon = (ImageView) itemView.findViewById(R.id.group_children_image);
             itemView.setOnClickListener(this);
         }
@@ -39,11 +44,6 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
         public void onClick(View v) {
             Log.d(TAG, "onClicked " + getAdapterPosition());
         }
-    }
-
-    public BillRecycleAdapter(List<Bill> billList, Context context){
-        this.billList = billList;
-        this.context = context;
     }
 
     @NonNull
@@ -64,7 +64,6 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
             holder.icon.setVisibility(View.GONE);
             holder.nameTextview.setText(member);
         }
-
     }
 
     @Override

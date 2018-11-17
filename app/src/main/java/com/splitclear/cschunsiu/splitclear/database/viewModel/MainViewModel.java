@@ -39,7 +39,6 @@ public class MainViewModel extends AndroidViewModel {
         dataRepo.insertGroupAndMember(group);
     }
 
-    ///////////////////
     public List<Member> getMemberList(Group group){
         return dataRepo.getMembers(group);
     }

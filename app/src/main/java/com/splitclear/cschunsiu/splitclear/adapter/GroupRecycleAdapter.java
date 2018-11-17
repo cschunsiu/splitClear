@@ -36,7 +36,7 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
             super(itemView);
 
             showingTextView = itemView.findViewById(R.id.group_children_edittext);
-            nameTextview = itemView.findViewById(R.id.postMemberName);
+            nameTextview = itemView.findViewById(R.id.group_children_postMemberName);
             icon = itemView.findViewById(R.id.group_children_image);
 
             itemView.setOnClickListener(this);
@@ -49,22 +49,6 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
             for(Group m : groupList){
                 System.out.println(m.getId());
             }
-//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//            builder.setView(R.layout.member_input_popup);
-//            builder.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    dialog.cancel();
-//                }
-//            });
-//            builder.setNegativeButton("CONFIRM", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                }
-//            });
-//
-//            AlertDialog dialog = builder.create();
-//            dialog.show();
 
             Intent i = new Intent(context, GroupViewActivity.class).putExtra("Group", groupList.get(getAdapterPosition()));
             context.startActivity(i);
