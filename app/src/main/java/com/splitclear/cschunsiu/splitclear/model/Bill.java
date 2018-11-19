@@ -4,26 +4,39 @@ import android.arch.persistence.room.*;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "bill",
-        foreignKeys = @ForeignKey(entity = Group.class,
-                parentColumns = "id",
-                childColumns = "groupsId",
-                onDelete = CASCADE))
+@Entity
 public class Bill {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     public int id;
-    public String name;
+    @ColumnInfo(name = "billName")
+    public String billName;
+    @ColumnInfo(name = "amount")
+    public float amount;
+    @ColumnInfo(name = "groupsId")
     public long groupsId;
+    @ColumnInfo(name = "memberId")
+    public long memberId;
+    @ColumnInfo(name = "memberName")
+    public String memberName;
 
-    public Bill(){
-        this.name = "Default";
+    public Bill(String billName) {
+        this.billName = billName;
     }
 
-    public Bill(String name) {
-        this.name = name;
+    public void setAmount(float amount){
+        this.amount = amount;
     }
 
     public void setGroupsId(long groupsId){
         this.groupsId = groupsId;
+    }
+
+    public void setMemberId(long memberId){
+        this.memberId = memberId;
+    }
+
+    public void setMemberName(String memberName){
+        this.memberName = memberName;
     }
 }
