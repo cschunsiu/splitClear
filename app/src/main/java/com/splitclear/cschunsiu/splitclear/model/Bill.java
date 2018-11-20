@@ -12,31 +12,32 @@ public class Bill {
     @ColumnInfo(name = "billName")
     public String billName;
     @ColumnInfo(name = "amount")
-    public float amount;
+    public Float amount;
     @ColumnInfo(name = "groupsId")
     public long groupsId;
     @ColumnInfo(name = "memberId")
     public long memberId;
-    @ColumnInfo(name = "memberName")
-    public String memberName;
 
-    public Bill(String billName) {
+    public Bill(String billName, long groupsId, long memberId, float amount) {
         this.billName = billName;
-    }
-
-    public void setAmount(float amount){
         this.amount = amount;
-    }
-
-    public void setGroupsId(long groupsId){
         this.groupsId = groupsId;
-    }
-
-    public void setMemberId(long memberId){
         this.memberId = memberId;
     }
 
-    public void setMemberName(String memberName){
-        this.memberName = memberName;
-    }
+//    public void setAmount(float amount){
+//        this.amount = amount;
+//    }
+//
+//    public void setGroupsId(long groupsId){
+//        this.groupsId = groupsId;
+//    }
+//
+//    public void setMemberId(long memberId){
+//        this.memberId = memberId;
+//    }
+//
+//    public void setMemberName(String memberName){
+//        this.memberName = memberName;
+//    }
 }

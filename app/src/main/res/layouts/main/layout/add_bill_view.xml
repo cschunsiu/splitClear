@@ -77,8 +77,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="368dp"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -92,8 +92,8 @@
             android:id="@+id/add_bill_addBillEvenButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="splitEven"
             android:layout_weight="1"
+            android:onClick="splitEven"
             android:text="Even" />
 
         <Button
@@ -113,25 +113,11 @@
             android:text="%" />
     </LinearLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/add_bill_distributionLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-    </android.support.constraint.ConstraintLayout>
-
     <Switch
         android:id="@+id/tipsSwitch"
         android:layout_width="89dp"
         android:layout_height="47dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:checked="false"
@@ -146,9 +132,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_bill_distributionLayout"
         tools:checked="false"
         tools:text="Is Tax or Tips included?" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/add_bill_distribution"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </android.support.constraint.ConstraintLayout>
 

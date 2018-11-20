@@ -20,9 +20,9 @@ import static android.view.View.VISIBLE;
 public class AddBillAdapter extends RecyclerView.Adapter<AddBillAdapter.AddBillViewHolder> {
     private AddBillType billType;
     private List<Member> memberList;
+    private float amount;
 
-    public AddBillAdapter(AddBillType billType, List<Member> memberList){
-        this.billType = billType;
+    public AddBillAdapter(List<Member> memberList){
         this.memberList = memberList;
     }
 
@@ -69,6 +69,7 @@ public class AddBillAdapter extends RecyclerView.Adapter<AddBillAdapter.AddBillV
 
     @Override
     public void onBindViewHolder(@NonNull AddBillViewHolder holder, final int position) {
+        holder.memberName.setText(memberList.get(position).name);
         if(billType == AddBillType.CUSTOM){
             holder.memberAmount.setVisibility(GONE);
             holder.memberCustomAmount.setVisibility(VISIBLE);
@@ -76,9 +77,10 @@ public class AddBillAdapter extends RecyclerView.Adapter<AddBillAdapter.AddBillV
             holder.memberAmount.setVisibility(GONE);
             holder.memberPercentBar.setVisibility(VISIBLE);
             holder.percentageText.setVisibility(VISIBLE);
+        }else {
+            float share = amount / memberList.size();
+            holder.memberAmount.setText(Float.toString(share));
         }
-
-        holder.memberName.setText(memberList.get(position).name);
     }
 
     @Override
@@ -86,4 +88,16 @@ public class AddBillAdapter extends RecyclerView.Adapter<AddBillAdapter.AddBillV
         return memberList.size();
     }
 
+    public AddBillType getBillType(){
+        return billType;
+    }
+
+    public void setAmountAndBillType(AddBillType billType, float amount){
+        this.billType = billType;
+        this.amount = amount;
+    }
+
+    public void setAmountAndBillType(AddBillType billType){
+        this.billType = billType;
+    }
 }
