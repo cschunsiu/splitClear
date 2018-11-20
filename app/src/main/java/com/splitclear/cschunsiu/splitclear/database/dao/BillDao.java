@@ -10,8 +10,8 @@ import java.util.List;
 
 @Dao
 public interface BillDao {
-    @Query("Select * from `bill` where groupsId =:groupsId group by billName")
-    List<Bill> getBillList(long groupsId);
+    @Query("Select * from `bill` group by billName")
+    LiveData<List<Bill>> getBillList();
 
     @Insert
     long insertBill(Bill bill);

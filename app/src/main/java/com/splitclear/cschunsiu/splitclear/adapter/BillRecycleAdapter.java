@@ -32,9 +32,9 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
         public BillViewHolder(View itemView){
             super(itemView);
 
-            showingTextView = (TextView)itemView.findViewById(R.id.group_children_edittext);
-            nameTextview = (TextView)itemView.findViewById(R.id.group_children_postMemberName);
-            icon = (ImageView) itemView.findViewById(R.id.group_children_image);
+            showingTextView = itemView.findViewById(R.id.group_children_edittext);
+            nameTextview = itemView.findViewById(R.id.group_children_postMemberName);
+            icon = itemView.findViewById(R.id.group_children_image);
             itemView.setOnClickListener(this);
         }
 
@@ -69,4 +69,7 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
         return billList.size();
     }
 
+    public void setBillList(List<Bill> billList){
+        this.billList = billList;
+    }
 }

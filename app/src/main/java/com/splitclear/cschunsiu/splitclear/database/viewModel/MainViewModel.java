@@ -20,6 +20,7 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
         dataRepo = new DataRepo(this.getApplication());
         groupLists = dataRepo.getGroup();
+        billList = dataRepo.getBill();
     }
 
     public LiveData<List<Group>> getGroupList(){
@@ -34,8 +35,8 @@ public class MainViewModel extends AndroidViewModel {
         dataRepo.insertGroupAndMember(group);
     }
 
-    public void insertBills (Group group){
-        dataRepo.insertGroupAndMember(group);
+    public void insertBills (List<Bill> bills){
+        dataRepo.insertBills(bills);
     }
 
     public List<Member> getMemberList(Group group){

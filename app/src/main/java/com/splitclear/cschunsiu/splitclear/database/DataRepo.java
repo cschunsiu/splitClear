@@ -39,18 +39,21 @@ public class DataRepo{
         }.execute();
     }
 
-    public void insertBills(final Group group) {
+    public void insertBills(final List<Bill> billList) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
+                for(Bill bill : billList){
+                    billDao.insertBill(bill);
+                }
                 return null;
             }
         }.execute();
     }
 
-    public LiveData<List<Group>> getGroup(){return groupDao.getGroupList();}
+    public LiveData<List<Bill>> getBill(){return billDao.getBillList();}
 
-    public List<Bill> getBill(Group group){return billDao.getBillList(group.id);}
+    public LiveData<List<Group>> getGroup(){return groupDao.getGroupList();}
 
     public List<Member> getMembers(final Group group){
         try {
