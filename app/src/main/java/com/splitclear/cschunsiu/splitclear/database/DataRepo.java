@@ -50,7 +50,7 @@ public class DataRepo{
 
     public LiveData<List<Group>> getGroup(){return groupDao.getGroupList();}
 
-    public LiveData<List<Bill>> getBill(){return billDao.getBillList();}
+    public List<Bill> getBill(Group group){return billDao.getBillList(group.id);}
 
     public List<Member> getMembers(final Group group){
         try {

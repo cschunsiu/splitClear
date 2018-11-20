@@ -38,18 +38,18 @@ public class GroupViewActivity extends FragmentActivity{
         recyclerView = findViewById(R.id.group_view_billList);
         setBillsRecyclerView(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainViewModel.getBillList().observe(this, new Observer<List<Bill>>() {
-            @Override
-            public void onChanged(@Nullable List<Bill> bills) {
-                //TODO change Bill Adapter Behavior
-            }
-        });
+//        mainViewModel.getBillList().observe(this, new Observer<List<Bill>>() {
+//            @Override
+//            public void onChanged(@Nullable List<Bill> bills) {
+//                //TODO change Bill Adapter Behavior
+//            }
+//        });
 
         selectedGroup.setMemberList(mainViewModel.getMemberList(selectedGroup));
     }
 
     public void setBillsRecyclerView(RecyclerView recyclerView){
-        mAdapter = new BillRecycleAdapter(bills,this);
+        mAdapter = new BillRecycleAdapter(bills);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));

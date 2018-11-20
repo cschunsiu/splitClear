@@ -4,14 +4,14 @@ import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.*;
 
 import com.splitclear.cschunsiu.splitclear.model.Bill;
+import com.splitclear.cschunsiu.splitclear.model.Member;
 
 import java.util.List;
 
 @Dao
 public interface BillDao {
-    //TODO To be implemented
-    @Query("Select * from `bill`")
-    LiveData<List<Bill>> getBillList();
+    @Query("Select * from `bill` where groupsId =:groupsId group by billName")
+    List<Bill> getBillList(long groupsId);
 
     @Insert
     long insertBill(Bill bill);

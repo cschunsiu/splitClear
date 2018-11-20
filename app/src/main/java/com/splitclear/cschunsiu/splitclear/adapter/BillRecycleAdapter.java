@@ -20,11 +20,9 @@ import static android.content.ContentValues.TAG;
 public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.BillViewHolder> {
 
     private List<Bill> billList;
-    private Context context;
 
-    public BillRecycleAdapter(List<Bill> billList, Context context){
+    public BillRecycleAdapter(List<Bill> billList){
         this.billList = billList;
-        this.context = context;
     }
 
     public class BillViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -57,9 +55,9 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull BillViewHolder holder, final int position) {
-        String member = billList.get(position).name;
+        String member = billList.get(position).billName;
 
-        if(!(billList.get(position).name).equals("Default")){
+        if(!(billList.get(position).billName).equals("Default")){
             holder.showingTextView.setVisibility(View.GONE);
             holder.icon.setVisibility(View.GONE);
             holder.nameTextview.setText(member);
