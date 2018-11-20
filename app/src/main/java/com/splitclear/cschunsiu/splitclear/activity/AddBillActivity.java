@@ -1,5 +1,6 @@
 package com.splitclear.cschunsiu.splitclear.activity;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.adapter.AddBillAdapter;
+import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
@@ -32,6 +34,7 @@ public class AddBillActivity extends FragmentActivity {
     private Switch tipsSwitch;
     private List<Bill> billList;
     private RecyclerView rw;
+    private MainViewModel mainViewModel;
     private AddBillAdapter abAdapter;
 
     @Override
@@ -45,6 +48,7 @@ public class AddBillActivity extends FragmentActivity {
         billName = findViewById(R.id.add_bill_addBillName);
         billAmount = findViewById(R.id.add_bill_addBillAmount);
         tipsSwitch = findViewById(R.id.tipsSwitch);
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         rw = findViewById(R.id.add_bill_distribution);
         abAdapter = new AddBillAdapter(selectedGroup.getMemberList());
         rw.setLayoutManager(new LinearLayoutManager(this));
@@ -75,6 +79,7 @@ public class AddBillActivity extends FragmentActivity {
 
     public void captureBill(View view){
         billCalculator(abAdapter.getBillType());
+        mainViewModel.insertBills(billList);
         finish();
     }
 
