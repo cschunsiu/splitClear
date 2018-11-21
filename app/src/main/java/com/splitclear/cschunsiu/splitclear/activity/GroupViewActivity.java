@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.adapter.BillRecycleAdapter;
+import com.splitclear.cschunsiu.splitclear.database.DataRepo;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
@@ -45,7 +46,7 @@ public class GroupViewActivity extends FragmentActivity{
             }
         });
 
-        selectedGroup.setMemberList(mainViewModel.getMemberList(selectedGroup));
+        selectedGroup.setMemberList(new DataRepo(this).getMembers(selectedGroup));
     }
 
     public void setBillsRecyclerView(RecyclerView recyclerView){

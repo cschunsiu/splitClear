@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.adapter.AddBillAdapter;
+import com.splitclear.cschunsiu.splitclear.database.DataRepo;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
@@ -32,9 +33,9 @@ public class AddBillActivity extends FragmentActivity {
     private EditText billAmount;
     private Group selectedGroup;
     private Switch tipsSwitch;
-    private List<Bill> billList;
+    private List<Bill> billList = new ArrayList<>();
     private RecyclerView rw;
-    private MainViewModel mainViewModel;
+    private DataRepo dataRepo;
     private AddBillAdapter abAdapter;
 
     @Override
@@ -44,12 +45,11 @@ public class AddBillActivity extends FragmentActivity {
         Intent intent = getIntent();
         selectedGroup = intent.getParcelableExtra("Group with Members");
 
-        billList = new ArrayList<>();
         billName = findViewById(R.id.add_bill_addBillName);
         billAmount = findViewById(R.id.add_bill_addBillAmount);
         tipsSwitch = findViewById(R.id.tipsSwitch);
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         rw = findViewById(R.id.add_bill_distribution);
+        dataRepo = new DataRepo(this);
         abAdapter = new AddBillAdapter(selectedGroup.getMemberList());
         rw.setLayoutManager(new LinearLayoutManager(this));
         rw.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -71,6 +71,7 @@ public class AddBillActivity extends FragmentActivity {
     }
 
     public void splitCustom(View view){
+        //TODO implement tips switch
         resetBill(view);
         //add Recycler
         abAdapter.setAmountAndBillType(AddBillType.CUSTOM);
@@ -79,7 +80,7 @@ public class AddBillActivity extends FragmentActivity {
 
     public void captureBill(View view){
         billCalculator(abAdapter.getBillType());
-        mainViewModel.insertBills(billList);
+        dataRepo.insertBills(billList);
         finish();
     }
 
@@ -89,6 +90,7 @@ public class AddBillActivity extends FragmentActivity {
     }
 
     private void billCalculator(AddBillType billType){
+        //TODO implement accurate calculator
         float amount = Float.parseFloat(billAmount.getText().toString());
         String billNameInput = billName.getText().toString();
 

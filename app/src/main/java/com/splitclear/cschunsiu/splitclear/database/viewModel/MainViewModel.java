@@ -30,20 +30,4 @@ public class MainViewModel extends AndroidViewModel {
     public LiveData<List<Bill>> getBillListSummary(){
         return billList;
     }
-
-    public void insertGroupAndMember (Group group){
-        dataRepo.insertGroupAndMember(group);
-    }
-
-    public void insertBills (List<Bill> bills){
-        dataRepo.insertBills(bills);
-    }
-
-    public List<Member> getMemberList(Group group){
-        return dataRepo.getMembers(group);
-    }
-
-    public List<Bill> getBillList(Group group){
-        return dataRepo.getBills(group);
-    }
 }
