@@ -11,7 +11,13 @@ import java.util.List;
 @Dao
 public interface BillDao {
     @Query("Select * from `bill` group by billName")
-    LiveData<List<Bill>> getBillList();
+    LiveData<List<Bill>> getBillListSummary();
+
+    @Query("Select * from `bill` where groupsId = :groupsId")
+    List<Bill> getBillList(long groupsId);
+
+    @Query("Select *, SUM(amount) as amount from `bill` where groupsId = :groupsId group by memberId, memberName")
+    List<Bill> getBillListByMember(long groupsId);
 
     @Insert
     long insertBill(Bill bill);

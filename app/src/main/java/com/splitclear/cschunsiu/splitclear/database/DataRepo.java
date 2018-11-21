@@ -51,7 +51,7 @@ public class DataRepo{
         }.execute();
     }
 
-    public LiveData<List<Bill>> getBill(){return billDao.getBillList();}
+    public LiveData<List<Bill>> getBillSummary(){return billDao.getBillListSummary();}
 
     public LiveData<List<Group>> getGroup(){return groupDao.getGroupList();}
 
@@ -61,6 +61,34 @@ public class DataRepo{
                 @Override
                 protected List<Member> doInBackground(Void... voids) {
                     return memberDao.getMembers(group.id);
+                }
+            }.execute().get();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public List<Bill> getBills(final Group group){
+        try {
+            return new AsyncTask<Void, Void, List<Bill>>() {
+                @Override
+                protected List<Bill> doInBackground(Void... voids) {
+                    return billDao.getBillList(group.id);
+                }
+            }.execute().get();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public List<Bill> getBillsByMember(final Group group){
+        try {
+            return new AsyncTask<Void, Void, List<Bill>>() {
+                @Override
+                protected List<Bill> doInBackground(Void... voids) {
+                    return billDao.getBillListByMember(group.id);
                 }
             }.execute().get();
         }catch (Exception e){

@@ -97,14 +97,14 @@ public class AddBillActivity extends FragmentActivity {
 
             if(billType == AddBillType.CUSTOM) {
                 EditText result = ad.findViewById(R.id.add_bill_custom_amount);
-                billList.add(new Bill(billNameInput, selectedGroup.id, selectedGroup.getMemberList().get(i).id, Float.parseFloat(result.getText().toString())));
+                billList.add(new Bill(billNameInput, selectedGroup.id, selectedGroup.getMemberList().get(i).id, Float.parseFloat(result.getText().toString()), selectedGroup.getMemberList().get(i).name));
             }else if(billType == AddBillType.PERCENT){
                 SeekBar result = ad.findViewById(R.id.add_bill_percent_bar);
                 float memberAmount = amount * ((float)result.getProgress()/100);
-                billList.add(new Bill(billNameInput, selectedGroup.id, selectedGroup.getMemberList().get(i).id, memberAmount));
+                billList.add(new Bill(billNameInput, selectedGroup.id, selectedGroup.getMemberList().get(i).id, memberAmount, selectedGroup.getMemberList().get(i).name));
             }else{
                 float memberAmount = amount/selectedGroup.getMemberList().size();
-                billList.add(new Bill(billNameInput, selectedGroup.id, selectedGroup.getMemberList().get(i).id, memberAmount));
+                billList.add(new Bill(billNameInput, selectedGroup.id, selectedGroup.getMemberList().get(i).id, memberAmount, selectedGroup.getMemberList().get(i).name));
             }
         }
     }
