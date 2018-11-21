@@ -38,7 +38,7 @@ public class GroupViewActivity extends FragmentActivity{
         recyclerView = findViewById(R.id.group_view_billList);
         setBillsRecyclerView(recyclerView);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        mainViewModel.getBillList().observe(this, new Observer<List<Bill>>() {
+        mainViewModel.getBillListSummary().observe(this, new Observer<List<Bill>>() {
             @Override
             public void onChanged(@Nullable List<Bill> bills) {
                 liveDataFilterDisplay(bills);
@@ -58,6 +58,11 @@ public class GroupViewActivity extends FragmentActivity{
 
     public void addBillListener(View view){
         Intent i = new Intent(this, AddBillActivity.class).putExtra("Group with Members", selectedGroup);
+        startActivity(i);
+    }
+
+    public void showBalanceListener(View view) {
+        Intent i = new Intent(this, ShowBalanceActivity.class).putExtra("Group with Members", selectedGroup);
         startActivity(i);
     }
 

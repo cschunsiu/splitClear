@@ -89,7 +89,6 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
             holder.icon.setVisibility(View.GONE);
             holder.nameTextview.setText(member);
         }
-
     }
 
     @Override

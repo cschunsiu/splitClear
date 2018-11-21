@@ -17,12 +17,15 @@ public class Bill {
     public long groupsId;
     @ColumnInfo(name = "memberId")
     public long memberId;
+    @ColumnInfo(name = "memberName")
+    public String memberName;
 
-    public Bill(String billName, long groupsId, long memberId, float amount) {
+    public Bill(String billName, long groupsId, long memberId, float amount, String memberName) {
         this.billName = billName;
         this.amount = amount;
         this.groupsId = groupsId;
         this.memberId = memberId;
+        this.memberName = memberName;
     }
 
 //    public void setAmount(float amount){

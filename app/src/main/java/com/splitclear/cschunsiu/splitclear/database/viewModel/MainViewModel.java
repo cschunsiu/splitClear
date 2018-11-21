@@ -20,14 +20,14 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
         dataRepo = new DataRepo(this.getApplication());
         groupLists = dataRepo.getGroup();
-        billList = dataRepo.getBill();
+        billList = dataRepo.getBillSummary();
     }
 
     public LiveData<List<Group>> getGroupList(){
         return groupLists;
     }
 
-    public LiveData<List<Bill>> getBillList(){
+    public LiveData<List<Bill>> getBillListSummary(){
         return billList;
     }
 
@@ -41,5 +41,9 @@ public class MainViewModel extends AndroidViewModel {
 
     public List<Member> getMemberList(Group group){
         return dataRepo.getMembers(group);
+    }
+
+    public List<Bill> getBillList(Group group){
+        return dataRepo.getBills(group);
     }
 }
