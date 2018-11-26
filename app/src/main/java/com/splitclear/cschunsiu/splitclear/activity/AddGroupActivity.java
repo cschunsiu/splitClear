@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.splitclear.cschunsiu.splitclear.adapter.MemberRecycleAdapter;
 import com.splitclear.cschunsiu.splitclear.R;
+import com.splitclear.cschunsiu.splitclear.database.DataRepo;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
@@ -23,7 +24,7 @@ public class AddGroupActivity extends FragmentActivity {
     private RecyclerView recyclerView;
     private MemberRecycleAdapter mAdapter;
     private List<Member> memberList  = new ArrayList();
-    MainViewModel mainViewModel;
+    private DataRepo dataRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class AddGroupActivity extends FragmentActivity {
         recyclerView = findViewById(R.id.add_member_memberList);
         setRecyclerViewListener(recyclerView);
 
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        dataRepo = new DataRepo(this);
     }
 
     //complete button
@@ -46,7 +47,7 @@ public class AddGroupActivity extends FragmentActivity {
         memberList.remove(memberList.size()-1);
         group.setMemberList(new ArrayList<>(memberList));
 
-        mainViewModel.insertGroupAndMember(group);
+        dataRepo.insertGroupAndMember(group);
         memberList.clear();
         finish();
     }

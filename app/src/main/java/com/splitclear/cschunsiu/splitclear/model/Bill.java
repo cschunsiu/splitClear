@@ -27,20 +27,4 @@ public class Bill {
         this.memberId = memberId;
         this.memberName = memberName;
     }
-
-//    public void setAmount(float amount){
-//        this.amount = amount;
-//    }
-//
-//    public void setGroupsId(long groupsId){
-//        this.groupsId = groupsId;
-//    }
-//
-//    public void setMemberId(long memberId){
-//        this.memberId = memberId;
-//    }
-//
-//    public void setMemberName(String memberName){
-//        this.memberName = memberName;
-//    }
 }
