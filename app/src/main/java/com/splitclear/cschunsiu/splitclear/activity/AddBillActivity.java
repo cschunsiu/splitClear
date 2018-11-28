@@ -81,6 +81,7 @@ public class AddBillActivity extends FragmentActivity {
     }
 
     public void captureBill(View view){
+        //TODO change behavior or calculator
         createBillsForMembers(abAdapter.getBillType());
         dataRepo.insertBills(billList);
         finish();
