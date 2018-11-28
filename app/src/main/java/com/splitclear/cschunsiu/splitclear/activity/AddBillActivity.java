@@ -22,8 +22,10 @@ import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Group;
 import com.splitclear.cschunsiu.splitclear.model.Member;
 import com.splitclear.cschunsiu.splitclear.util.AddBillType;
+import com.splitclear.cschunsiu.splitclear.util.BillAmountCalculator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -79,7 +81,7 @@ public class AddBillActivity extends FragmentActivity {
     }
 
     public void captureBill(View view){
-        billCalculator(abAdapter.getBillType());
+        createBillsForMembers(abAdapter.getBillType());
         dataRepo.insertBills(billList);
         finish();
     }
@@ -89,25 +91,38 @@ public class AddBillActivity extends FragmentActivity {
         tipsSwitch.setVisibility(GONE);
     }
 
-    private void billCalculator(AddBillType billType){
+    private void createBillsForMembers(AddBillType billType){
         //TODO implement accurate calculator
         float amount = Float.parseFloat(billAmount.getText().toString());
         String billNameInput = billName.getText().toString();
+        HashMap<Long, Float> map = new HashMap<>();
 
-        for(int i = 0; i < selectedGroup.getMemberList().size(); i++) {
-            View ad = rw.getChildAt(i);
+        switch(billType){
+            case CUSTOM:
+                for (int i = 0; i < rw.getLayoutManager().getChildCount(); i++){
+                    View view = rw.getChildAt(i);
+                    EditText result = view.findViewById(R.id.add_bill_custom_amount);
+                    map.put(selectedGroup.getMemberList().get(i).id, Float.parseFloat(result.getText().toString()));
+                }
+                break;
+            case PERCENT:
+                for (int i = 0; i < rw.getLayoutManager().getChildCount(); i++){
+                    View view = rw.getChildAt(i);
+                    SeekBar result = view.findViewById(R.id.add_bill_percent_bar);
+                    map.put(selectedGroup.getMemberList().get(i).id, (float)result.getProgress());
+                }
+                break;
+            case EVEN:
+                for (int i = 0; i < rw.getLayoutManager().getChildCount(); i++) {
+                    map.put(selectedGroup.getMemberList().get(i).id, amount);
+                }
+                break;
+        }
 
-            if(billType == AddBillType.CUSTOM) {
-                EditText result = ad.findViewById(R.id.add_bill_custom_amount);
-                billList.add(new Bill(billNameInput, selectedGroup.id, selectedGroup.getMemberList().get(i).id, Float.parseFloat(result.getText().toString()), selectedGroup.getMemberList().get(i).name));
-            }else if(billType == AddBillType.PERCENT){
-                SeekBar result = ad.findViewById(R.id.add_bill_percent_bar);
-                float memberAmount = amount * ((float)result.getProgress()/100);
-                billList.add(new Bill(billNameInput, selectedGroup.id, selectedGroup.getMemberList().get(i).id, memberAmount, selectedGroup.getMemberList().get(i).name));
-            }else{
-                float memberAmount = amount/selectedGroup.getMemberList().size();
-                billList.add(new Bill(billNameInput, selectedGroup.id, selectedGroup.getMemberList().get(i).id, memberAmount, selectedGroup.getMemberList().get(i).name));
-            }
+        BillAmountCalculator.calEachMemberBill(billType,map,amount, selectedGroup);
+
+        for(Member member : selectedGroup.getMemberList()){
+            billList.add(new Bill(billNameInput,selectedGroup.getId(), member.id, map.get(member.id), member.name));
         }
     }
 }
