@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.adapter.AddBillAdapter;
@@ -29,16 +30,18 @@ import java.util.HashMap;
 import java.util.List;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public class AddBillActivity extends FragmentActivity {
     private EditText billName;
     private EditText billAmount;
     private Group selectedGroup;
-    private Switch tipsSwitch;
     private List<Bill> billList = new ArrayList<>();
     private RecyclerView rw;
+    private EditText tipsInput;
     private DataRepo dataRepo;
     private AddBillAdapter abAdapter;
+    private HashMap<Long, Float> map = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +49,16 @@ public class AddBillActivity extends FragmentActivity {
         setContentView(R.layout.add_bill_view);
         Intent intent = getIntent();
         selectedGroup = intent.getParcelableExtra("Group with Members");
+        for(Member m : selectedGroup.getMemberList()){
+            map.put(m.id, (float) 0);
+        }
 
         billName = findViewById(R.id.add_bill_addBillName);
         billAmount = findViewById(R.id.add_bill_addBillAmount);
-        tipsSwitch = findViewById(R.id.tipsSwitch);
         rw = findViewById(R.id.add_bill_distribution);
+        tipsInput = findViewById(R.id.tipsInput);
         dataRepo = new DataRepo(this);
-        abAdapter = new AddBillAdapter(selectedGroup.getMemberList());
+        abAdapter = new AddBillAdapter(selectedGroup.getMemberList(), map);
         rw.setLayoutManager(new LinearLayoutManager(this));
         rw.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
     }
@@ -60,8 +66,9 @@ public class AddBillActivity extends FragmentActivity {
     public void splitEven(View view){
         resetBill(view);
         float amount = Float.parseFloat(billAmount.getText().toString());
+        BillAmountCalculator.calEachMemberBill(abAdapter.getBillType(), map, amount);
         //add Recycler
-        abAdapter.setAmountAndBillType(AddBillType.EVEN, amount);
+        abAdapter.setAmountAndBillType(AddBillType.EVEN);
         rw.setAdapter(abAdapter);
     }
 
@@ -78,6 +85,8 @@ public class AddBillActivity extends FragmentActivity {
         //add Recycler
         abAdapter.setAmountAndBillType(AddBillType.CUSTOM);
         rw.setAdapter(abAdapter);
+        tipsInput.setVisibility(VISIBLE);
+        Toast.makeText(this,"Tax will be calculated, please enter Tips if any", Toast.LENGTH_LONG).show();
     }
 
     public void captureBill(View view){
@@ -88,15 +97,14 @@ public class AddBillActivity extends FragmentActivity {
     }
 
     public void resetBill(View view){
-        rw.removeAllViews();
-        tipsSwitch.setVisibility(GONE);
+        tipsInput.setVisibility(GONE);
+        rw.setAdapter(null);
     }
 
     private void createBillsForMembers(AddBillType billType){
         //TODO implement accurate calculator
         float amount = Float.parseFloat(billAmount.getText().toString());
         String billNameInput = billName.getText().toString();
-        HashMap<Long, Float> map = new HashMap<>();
 
         switch(billType){
             case CUSTOM:
@@ -105,6 +113,7 @@ public class AddBillActivity extends FragmentActivity {
                     EditText result = view.findViewById(R.id.add_bill_custom_amount);
                     map.put(selectedGroup.getMemberList().get(i).id, Float.parseFloat(result.getText().toString()));
                 }
+                BillAmountCalculator.calEachMemberBill(map,amount, Float.parseFloat(tipsInput.getText().toString()));
                 break;
             case PERCENT:
                 for (int i = 0; i < rw.getLayoutManager().getChildCount(); i++){
@@ -112,15 +121,9 @@ public class AddBillActivity extends FragmentActivity {
                     SeekBar result = view.findViewById(R.id.add_bill_percent_bar);
                     map.put(selectedGroup.getMemberList().get(i).id, (float)result.getProgress());
                 }
-                break;
-            case EVEN:
-                for (int i = 0; i < rw.getLayoutManager().getChildCount(); i++) {
-                    map.put(selectedGroup.getMemberList().get(i).id, amount);
-                }
+                BillAmountCalculator.calEachMemberBill(billType,map,amount);
                 break;
         }
-
-        BillAmountCalculator.calEachMemberBill(billType,map,amount, selectedGroup);
 
         for(Member member : selectedGroup.getMemberList()){
             billList.add(new Bill(billNameInput,selectedGroup.getId(), member.id, map.get(member.id), member.name));
