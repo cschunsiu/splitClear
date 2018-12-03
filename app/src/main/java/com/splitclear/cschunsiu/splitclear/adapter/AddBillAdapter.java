@@ -12,6 +12,7 @@ import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.model.Member;
 import com.splitclear.cschunsiu.splitclear.util.AddBillType;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -20,10 +21,11 @@ import static android.view.View.VISIBLE;
 public class AddBillAdapter extends RecyclerView.Adapter<AddBillAdapter.AddBillViewHolder> {
     private AddBillType billType;
     private List<Member> memberList;
-    private float amount;
+    private HashMap<Long, Float> map;
 
-    public AddBillAdapter(List<Member> memberList){
+    public AddBillAdapter(List<Member> memberList, HashMap<Long, Float> map){
         this.memberList = memberList;
+        this.map = map;
     }
 
     public class AddBillViewHolder extends RecyclerView.ViewHolder{
@@ -78,8 +80,7 @@ public class AddBillAdapter extends RecyclerView.Adapter<AddBillAdapter.AddBillV
             holder.memberPercentBar.setVisibility(VISIBLE);
             holder.percentageText.setVisibility(VISIBLE);
         }else {
-            float share = amount / memberList.size();
-            holder.memberAmount.setText(Float.toString(share));
+            holder.memberAmount.setText(Float.toString(map.get(memberList.get(position).id)));
         }
     }
 
@@ -90,11 +91,6 @@ public class AddBillAdapter extends RecyclerView.Adapter<AddBillAdapter.AddBillV
 
     public AddBillType getBillType(){
         return billType;
-    }
-
-    public void setAmountAndBillType(AddBillType billType, float amount){
-        this.billType = billType;
-        this.amount = amount;
     }
 
     public void setAmountAndBillType(AddBillType billType){

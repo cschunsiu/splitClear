@@ -1,7 +1,7 @@
 package com.splitclear.cschunsiu.splitclear;
 
 import org.junit.Test;
-
+import com.splitclear.cschunsiu.splitclear.activity.AddBillActivity;
 import static org.junit.Assert.*;
 
 /**
