@@ -1,10 +1,5 @@
 package com.splitclear.cschunsiu.splitclear.util;
 
-import android.content.Context;
-import android.view.View;
-
-import com.splitclear.cschunsiu.splitclear.model.Group;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +30,68 @@ public class BillAmountCalculator {
             customTotal += entry.getValue();
         }
 
-        calCustomDistributionWIthTipsAndTax(tips, amount, customTotal);
+        float taxRate = setDecimal((amount - tips - customTotal) / setDecimal(customTotal) * 100);
+
+        taxRate /= 100;
+        for (Map.Entry<Long,Float> entry: map.entrySet()) {
+            float ff = setDecimal(entry.getValue() * (1 + taxRate));
+            entry.setValue(ff);
+        }
+
+        float offset = getOffset(tips, map.size(),2);
+        tips -= offset;
+        for (Map.Entry<Long,Float> entry: map.entrySet()) {
+            float evenTips = setDecimal(tips/map.size());
+            float result = entry.getValue();
+            entry.setValue(setDecimal(result + evenTips));
+        }
+
+        List prepList = new ArrayList(map.keySet());
+        for (int i = (int) (offset*100); i != 0; i--) {
+            int randomIndex = rand.nextInt(prepList.size());
+            long memberId = (long) prepList.get(randomIndex);
+
+            Float result = map.get(memberId);
+            map.replace(memberId,setDecimal(result+(float)0.01));
+            prepList.remove(randomIndex);
+        }
+
+
+        float finalTotal = 0;
+        for (Map.Entry<Long,Float> entry: map.entrySet()) {
+            finalTotal += entry.getValue();
+        }
+
+        Long minMap= Long.valueOf(0);
+        Long maxMap= Long.valueOf(0);
+        Float min = null;
+        Float max = null;
+        for (Map.Entry<Long,Float> entry: map.entrySet()) {
+            if(min == null){
+                min = entry.getValue();
+                minMap = entry.getKey();
+                max = entry.getValue();
+                maxMap = entry.getKey();
+            }
+            if(entry.getValue() < min){
+                min = entry.getValue();
+                minMap = entry.getKey();
+            }else if (entry.getValue() > max){
+                max = entry.getValue();
+                maxMap = entry.getKey();
+            }
+        }
+
+        if(finalTotal > amount){
+            map.replace(maxMap, setDecimal(map.get(maxMap) - (float)0.01));
+        }else if (finalTotal < amount){
+            map.replace(minMap, setDecimal(map.get(minMap) + (float)0.01));
+        }
+
+        for (Map.Entry<Long,Float> entry: map.entrySet()) {
+            System.out.println(entry.getValue());
+        }
+
     }
 
     private static void calEvenDistribution(HashMap<Long,Float> map, float amount){
@@ -58,10 +114,6 @@ public class BillAmountCalculator {
             map.replace(memberId,setDecimal(result+(float)0.01));
             prepList.remove(randomIndex);
         }
-
-    }
-
-    private static void calCustomDistributionWIthTipsAndTax(float tips, float amount, float customTotal){
 
     }
 
