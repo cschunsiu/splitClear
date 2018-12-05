@@ -66,9 +66,8 @@ public class AddBillActivity extends FragmentActivity {
     public void splitEven(View view){
         resetBill(view);
         float amount = Float.parseFloat(billAmount.getText().toString());
-        BillAmountCalculator.calEachMemberBill(abAdapter.getBillType(), map, amount);
-        //add Recycler
         abAdapter.setAmountAndBillType(AddBillType.EVEN);
+        BillAmountCalculator.calEachMemberBill(abAdapter.getBillType(), map, amount);
         rw.setAdapter(abAdapter);
     }
 
@@ -97,6 +96,7 @@ public class AddBillActivity extends FragmentActivity {
     }
 
     public void resetBill(View view){
+        tipsInput.getText().clear();
         tipsInput.setVisibility(GONE);
         rw.setAdapter(null);
     }
