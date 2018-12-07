@@ -57,6 +57,8 @@ public class AddBillActivity extends FragmentActivity {
         billAmount = findViewById(R.id.add_bill_addBillAmount);
         rw = findViewById(R.id.add_bill_distribution);
         tipsInput = findViewById(R.id.tipsInput);
+        tipsInput.setVisibility(GONE);
+        tipsInput.getText().clear();
         dataRepo = new DataRepo(this);
         abAdapter = new AddBillAdapter(selectedGroup.getMemberList(), map);
         rw.setLayoutManager(new LinearLayoutManager(this));
@@ -89,7 +91,6 @@ public class AddBillActivity extends FragmentActivity {
     }
 
     public void captureBill(View view){
-        //TODO change behavior or calculator
         createBillsForMembers(abAdapter.getBillType());
         dataRepo.insertBills(billList);
         finish();
@@ -102,7 +103,6 @@ public class AddBillActivity extends FragmentActivity {
     }
 
     private void createBillsForMembers(AddBillType billType){
-        //TODO implement accurate calculator
         float amount = Float.parseFloat(billAmount.getText().toString());
         String billNameInput = billName.getText().toString();
 

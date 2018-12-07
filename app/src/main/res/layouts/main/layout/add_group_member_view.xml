@@ -30,7 +30,7 @@
         android:layout_marginBottom="8dp"
         android:hint="Please Enter Group Name"
         android:imeOptions="actionDone"
-        android:singleLine="true"
+        android:inputType="" android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
