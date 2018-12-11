@@ -1,7 +1,9 @@
 package com.splitclear.cschunsiu.splitclear.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.splitclear.cschunsiu.splitclear.R;
+import com.splitclear.cschunsiu.splitclear.activity.EditBillActivity;
+import com.splitclear.cschunsiu.splitclear.activity.GroupViewActivity;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 
 import java.util.List;
@@ -20,8 +24,10 @@ import static android.content.ContentValues.TAG;
 public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.BillViewHolder> {
 
     private List<Bill> billList;
+    private Context context;
 
-    public BillRecycleAdapter(List<Bill> billList){
+    public BillRecycleAdapter(List<Bill> billList, Context context){
+        this.context = context;
         this.billList = billList;
     }
 
@@ -40,7 +46,8 @@ public class BillRecycleAdapter extends RecyclerView.Adapter<BillRecycleAdapter.
 
         @Override
         public void onClick(View v) {
-            Log.d(TAG, "onClicked " + getAdapterPosition());
+            Intent i = new Intent(context, EditBillActivity.class).putExtra("Bill", billList.get(getAdapterPosition()));
+            context.startActivity(i);
         }
     }
 

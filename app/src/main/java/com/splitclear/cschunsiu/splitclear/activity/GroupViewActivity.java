@@ -50,7 +50,7 @@ public class GroupViewActivity extends FragmentActivity{
     }
 
     public void setBillsRecyclerView(RecyclerView recyclerView){
-        mAdapter = new BillRecycleAdapter(bills);
+        mAdapter = new BillRecycleAdapter(bills, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
