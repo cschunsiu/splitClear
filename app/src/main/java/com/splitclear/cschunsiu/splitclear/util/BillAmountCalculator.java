@@ -18,7 +18,6 @@ public class BillAmountCalculator {
             case PERCENT:
                 for (Map.Entry<Long,Float> entry: map.entrySet()) {
                     float result = entry.getValue();
-                    System.out.println(setDecimal(amount*(result/100)));
                     entry.setValue(setDecimal(amount*(result/100)));
                 }
                 break;
@@ -62,6 +61,7 @@ public class BillAmountCalculator {
         for (Map.Entry<Long,Float> entry: map.entrySet()) {
             finalTotal += entry.getValue();
         }
+        finalTotal = setDecimal(finalTotal);
 
         Long minMap= Long.valueOf(0);
         Long maxMap= Long.valueOf(0);
@@ -89,10 +89,6 @@ public class BillAmountCalculator {
             map.replace(minMap, setDecimal(map.get(minMap) + (float)0.01));
         }
 
-        for (Map.Entry<Long,Float> entry: map.entrySet()) {
-            System.out.println(entry.getValue());
-        }
-
     }
 
     private static void calEvenDistribution(HashMap<Long,Float> map, float amount){
@@ -111,7 +107,6 @@ public class BillAmountCalculator {
 
             Float result = map.get(memberId);
 
-            System.out.println(setDecimal(result+(float)0.01));
             map.replace(memberId,setDecimal(result+(float)0.01));
             prepList.remove(randomIndex);
         }
@@ -134,7 +129,7 @@ public class BillAmountCalculator {
         return offset;
     }
 
-    private static float setDecimal(float num){
+    public static float setDecimal(float num){
         BigDecimal bd = new BigDecimal(Float.toString(num));
         float newNum = bd.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 

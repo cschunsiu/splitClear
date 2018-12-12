@@ -82,7 +82,7 @@ public class EditBillAdapter extends RecyclerView.Adapter<EditBillAdapter.EditBi
             holder.memberPercentBar.setVisibility(VISIBLE);
             holder.percentageText.setVisibility(VISIBLE);
         }else {
-            holder.memberAmount.setText(Float.toString(map.get(memberList.get(position).id)));
+            holder.memberAmount.setText(Float.toString(map.get(memberList.get(position).memberId)));
         }
     }
 

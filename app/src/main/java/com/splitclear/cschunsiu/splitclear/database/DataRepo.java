@@ -96,4 +96,16 @@ public class DataRepo{
         }
         return null;
     }
+
+    public void updateBills(final List<Bill> billList) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                for(Bill bill : billList){
+                    billDao.updateBill(bill);
+                }
+                return null;
+            }
+        }.execute();
+    }
 }

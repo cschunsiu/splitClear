@@ -58,7 +58,7 @@ public class AddBillActivity extends FragmentActivity {
         rw = findViewById(R.id.add_bill_distribution);
         tipsInput = findViewById(R.id.tipsInput);
         tipsInput.setVisibility(GONE);
-        tipsInput.getText().clear();
+
         dataRepo = new DataRepo(this);
         abAdapter = new AddBillAdapter(selectedGroup.getMemberList(), map);
         rw.setLayoutManager(new LinearLayoutManager(this));
@@ -97,7 +97,7 @@ public class AddBillActivity extends FragmentActivity {
     }
 
     public void resetBill(View view){
-        tipsInput.getText().clear();
+        tipsInput.setText("0");
         tipsInput.setVisibility(GONE);
         rw.setAdapter(null);
     }

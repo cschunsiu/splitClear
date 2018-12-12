@@ -34,7 +34,6 @@ public class GroupViewActivity extends FragmentActivity{
         setContentView(R.layout.group_view);
         Intent intent = getIntent();
         selectedGroup = intent.getParcelableExtra("Group");
-        System.out.println(selectedGroup.getName() + " " + selectedGroup.getId());
 
         recyclerView = findViewById(R.id.group_view_billList);
         setBillsRecyclerView(recyclerView);
@@ -72,7 +71,6 @@ public class GroupViewActivity extends FragmentActivity{
         for(Bill bill : bills){
             if(bill.groupsId == selectedGroup.id){
                 filteredList.add(bill);
-                System.out.println(bill.amount);
             }
         }
 
