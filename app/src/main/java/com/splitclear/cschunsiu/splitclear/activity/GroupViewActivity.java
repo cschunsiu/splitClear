@@ -72,6 +72,7 @@ public class GroupViewActivity extends FragmentActivity{
         for(Bill bill : bills){
             if(bill.groupsId == selectedGroup.id){
                 filteredList.add(bill);
+                System.out.println(bill.amount);
             }
         }
 

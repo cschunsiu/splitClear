@@ -69,12 +69,12 @@ public class DataRepo{
         return null;
     }
 
-    public List<Bill> getBills(final Group group){
+    public List<Bill> getBillsByName(final Long groupId, String billName){
         try {
             return new AsyncTask<Void, Void, List<Bill>>() {
                 @Override
                 protected List<Bill> doInBackground(Void... voids) {
-                    return billDao.getBillList(group.id);
+                    return billDao.getBillListByName(groupId, billName);
                 }
             }.execute().get();
         }catch (Exception e){

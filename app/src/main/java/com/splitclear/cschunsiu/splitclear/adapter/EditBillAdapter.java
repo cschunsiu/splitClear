@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import com.splitclear.cschunsiu.splitclear.R;
+import com.splitclear.cschunsiu.splitclear.model.Bill;
 import com.splitclear.cschunsiu.splitclear.model.Member;
 import com.splitclear.cschunsiu.splitclear.util.AddBillType;
 
@@ -19,11 +20,11 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class EditBillAdapter extends RecyclerView.Adapter<EditBillAdapter.EditBillViewHolder> {
-    private AddBillType billType;
-    private List<Member> memberList;
+    private AddBillType billType = AddBillType.CUSTOM;
+    private List<Bill> memberList;
     private HashMap<Long, Float> map;
 
-    public EditBillAdapter(List<Member> memberList, HashMap<Long, Float> map){
+    public EditBillAdapter(List<Bill> memberList, HashMap<Long, Float> map){
         this.memberList = memberList;
         this.map = map;
     }
@@ -71,10 +72,11 @@ public class EditBillAdapter extends RecyclerView.Adapter<EditBillAdapter.EditBi
 
     @Override
     public void onBindViewHolder(@NonNull EditBillViewHolder holder, final int position) {
-        holder.memberName.setText(memberList.get(position).name);
+        holder.memberName.setText(memberList.get(position).memberName);
         if(billType == AddBillType.CUSTOM){
             holder.memberAmount.setVisibility(GONE);
             holder.memberCustomAmount.setVisibility(VISIBLE);
+            holder.memberCustomAmount.setText(map.get(memberList.get(position).memberId).toString());
         }else if(billType == AddBillType.PERCENT){
             holder.memberAmount.setVisibility(GONE);
             holder.memberPercentBar.setVisibility(VISIBLE);
