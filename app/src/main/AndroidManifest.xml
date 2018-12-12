@@ -36,6 +36,10 @@
             android:name=".activity.ShowBalanceActivity"
             android:windowSoftInputMode="adjustPan">
         </activity>
+        <activity
+            android:name=".activity.EditBillActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
     </application>
 
 </manifest>

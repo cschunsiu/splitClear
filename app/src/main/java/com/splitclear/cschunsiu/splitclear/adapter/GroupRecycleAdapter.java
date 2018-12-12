@@ -46,10 +46,6 @@ public class GroupRecycleAdapter extends RecyclerView.Adapter<GroupRecycleAdapte
         public void onClick(View v) {
             Log.d(TAG, "onClicked " + getAdapterPosition());
 
-            for(Group m : groupList){
-                System.out.println(m.getId());
-            }
-
             Intent i = new Intent(context, GroupViewActivity.class).putExtra("Group", groupList.get(getAdapterPosition()));
             context.startActivity(i);
         }

@@ -136,6 +136,7 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Tips if any"
+        android:text="0"
         android:inputType="numberDecimal"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
