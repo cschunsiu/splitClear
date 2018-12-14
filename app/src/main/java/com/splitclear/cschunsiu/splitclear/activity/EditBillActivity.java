@@ -15,9 +15,8 @@ import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.adapter.EditBillAdapter;
 import com.splitclear.cschunsiu.splitclear.database.DataRepo;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
-import com.splitclear.cschunsiu.splitclear.model.Member;
 import com.splitclear.cschunsiu.splitclear.util.AddBillType;
-import com.splitclear.cschunsiu.splitclear.util.BillAmountCalculator;
+import com.splitclear.cschunsiu.splitclear.util.Calculator;
 
 import java.util.HashMap;
 import java.util.List;
@@ -63,7 +62,7 @@ public class EditBillActivity extends FragmentActivity {
 
     private void fillInData(){
         billName.setText(selectedBill.billName);
-        Float result = BillAmountCalculator.setDecimal(selectedBill.amount);
+        Float result = Calculator.setDecimal(selectedBill.amount);
         billAmount.setText(result.toString());
     }
 
@@ -71,7 +70,7 @@ public class EditBillActivity extends FragmentActivity {
         resetBill(view);
         float amount = Float.parseFloat(billAmount.getText().toString());
         mAdapter.setAmountAndBillType(AddBillType.EVEN);
-        BillAmountCalculator.calEachMemberBill(mAdapter.getBillType(), map, amount);
+        Calculator.calEachMemberBill(mAdapter.getBillType(), map, amount);
         rw.setAdapter(mAdapter);
     }
 
@@ -83,7 +82,6 @@ public class EditBillActivity extends FragmentActivity {
     }
 
     public void splitCustom(View view){
-        //TODO implement tips switch
         resetBill(view);
         //add Recycler
         mAdapter.setAmountAndBillType(AddBillType.CUSTOM);
@@ -115,7 +113,7 @@ public class EditBillActivity extends FragmentActivity {
                     EditText result = view.findViewById(R.id.add_bill_custom_amount);
                     map.put(billList.get(i).memberId, Float.parseFloat(result.getText().toString()));
                 }
-                BillAmountCalculator.calEachMemberBill(map,amount, Float.parseFloat(tipsInput.getText().toString()));
+                Calculator.calEachMemberBill(map,amount, Float.parseFloat(tipsInput.getText().toString()));
                 break;
             case PERCENT:
                 for (int i = 0; i < rw.getLayoutManager().getChildCount(); i++){
@@ -123,7 +121,7 @@ public class EditBillActivity extends FragmentActivity {
                     SeekBar result = view.findViewById(R.id.add_bill_percent_bar);
                     map.put(billList.get(i).memberId, (float)result.getProgress());
                 }
-                BillAmountCalculator.calEachMemberBill(billType,map,amount);
+                Calculator.calEachMemberBill(billType,map,amount);
                 break;
         }
 
