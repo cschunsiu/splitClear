@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class BillAmountCalculator {
+public class Calculator {
     private static Random rand = new Random();
 
     public static void calEachMemberBill(AddBillType billType, HashMap<Long,Float> map, float amount){
