@@ -5,14 +5,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import com.splitclear.cschunsiu.splitclear.activity.AddBillActivity;
 import com.splitclear.cschunsiu.splitclear.util.AddBillType;
-import com.splitclear.cschunsiu.splitclear.util.BillAmountCalculator;
+import com.splitclear.cschunsiu.splitclear.util.Calculator;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 
-import static com.splitclear.cschunsiu.splitclear.util.AddBillType.CUSTOM;
 import static com.splitclear.cschunsiu.splitclear.util.AddBillType.EVEN;
 import static com.splitclear.cschunsiu.splitclear.util.AddBillType.PERCENT;
 import static org.junit.Assert.*;
@@ -28,7 +25,7 @@ public class CalculatorTest {
     private float testTips;
     private AddBillType testType;
     @Mock
-    private BillAmountCalculator billCal;
+    private Calculator billCal;
 
     @Before
     public void setUp(){

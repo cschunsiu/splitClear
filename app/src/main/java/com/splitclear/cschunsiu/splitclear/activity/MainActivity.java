@@ -3,21 +3,26 @@ package com.splitclear.cschunsiu.splitclear.activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.adapter.GroupRecycleAdapter;
 import com.splitclear.cschunsiu.splitclear.database.viewModel.MainViewModel;
 import com.splitclear.cschunsiu.splitclear.model.Group;
+import com.splitclear.cschunsiu.splitclear.util.SwipeController;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.support.v7.widget.helper.ItemTouchHelper.LEFT;
 
 public class MainActivity extends FragmentActivity {
     private MainViewModel mainViewModel;
@@ -53,6 +58,8 @@ public class MainActivity extends FragmentActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
-    }
 
+        SwipeController sc = new SwipeController(0 , LEFT);
+        new ItemTouchHelper(sc).attachToRecyclerView(recyclerView);
+    }
 }

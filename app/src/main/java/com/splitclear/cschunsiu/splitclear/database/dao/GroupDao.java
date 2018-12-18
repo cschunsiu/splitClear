@@ -20,7 +20,6 @@ public interface GroupDao {
     @Insert
     long insertGroup(Group group);
 
-    //TODO implete delete and update
     @Delete
     void deleteGroup(Group group);
 
