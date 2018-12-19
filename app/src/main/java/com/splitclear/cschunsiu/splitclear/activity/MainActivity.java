@@ -24,7 +24,7 @@ import java.util.List;
 
 import static android.support.v7.widget.helper.ItemTouchHelper.LEFT;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements GroupRecycleAdapter.GroupViewRecyclerItemClick {
     private MainViewModel mainViewModel;
     private List<Group> groupList = new ArrayList<>();
     private GroupRecycleAdapter mAdapter;
@@ -54,6 +54,7 @@ public class MainActivity extends FragmentActivity {
 
     public void setGroupRecyclerView(RecyclerView recyclerView){
         mAdapter = new GroupRecycleAdapter(groupList,this);
+        mAdapter.setListener(this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -61,5 +62,14 @@ public class MainActivity extends FragmentActivity {
 
         SwipeController sc = new SwipeController(0 , LEFT);
         new ItemTouchHelper(sc).attachToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onItemClick(int position, String action) {
+        System.out.println(position + " " + action);
+    }
+
+    public void hihi(View view){
+        System.out.println("eee");
     }
 }
