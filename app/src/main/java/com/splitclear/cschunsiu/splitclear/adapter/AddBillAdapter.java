@@ -42,9 +42,12 @@ public class AddBillAdapter extends RecyclerView.Adapter<AddBillAdapter.AddBillV
             memberPercentBar = itemView.findViewById(R.id.add_bill_percent_bar);
             memberCustomAmount = itemView.findViewById(R.id.add_bill_custom_amount);
 
+            int step = 5;
             memberPercentBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    progress = ((int)Math.round(progress/step ))*step;
+                    seekBar.setProgress(progress);
                     percentageText.setText(progress+"%");
                 }
 
