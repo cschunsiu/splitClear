@@ -1,20 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.chauthai.swipereveallayout.SwipeRevealLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
+    android:id="@+id/sw"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="60dp"
+    app:dragEdge="right"
+    app:mode="same_level">
 
+    <!-- Your secondary layout here -->
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
 
+        <RelativeLayout
+            android:id="@+id/group_edit_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#e4dd73">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:text="Edit" />
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerInParent="true"
+                android:src="@android:drawable/ic_menu_edit"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/group_delete_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#e46363">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Delete"
+                android:layout_centerHorizontal="true"/>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_delete" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- Your main layout here -->
     <android.support.constraint.ConstraintLayout
         android:id="@+id/view_foreground"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@android:color/white"
-        android:elevation="2dp"
-        android:visibility="invisible">
+        android:background="@android:color/white">
 
         <TextView
             android:id="@+id/group_children_postMemberName"
@@ -72,37 +116,4 @@
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/view_background"
-        android:layout_width="match_parent"
-        android:layout_height="60dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"/>
-
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#e4dd73"
-            android:src="@android:drawable/ic_menu_edit" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background='#e46363'
-            android:src="@drawable/ic_delete" />
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
-</FrameLayout>
+</com.chauthai.swipereveallayout.SwipeRevealLayout>
