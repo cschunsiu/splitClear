@@ -108,4 +108,35 @@ public class DataRepo{
             }
         }.execute();
     }
+
+    public void deleteGroup(Group group){
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                billDao.deleteBill(group.getId());
+                memberDao.deleteMember(group.getId());
+                groupDao.deleteGroup(group);
+                return null;
+            }
+        }.execute();
+    }
+
+    public void updateGroupAndBill(Group group, List<Member> memberList){
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                groupDao.updateGroup(group);
+                for(Member member : memberList){
+                    if(member.id == null){
+                        member.setGroupsId(group.id);
+                        memberDao.insertMember(member);
+                    }else {
+                        memberDao.updateMember(member);
+                        billDao.updateMemberName(member.name, member.id, member.groupsId);
+                    }
+                }
+                return null;
+            }
+        }.execute();
+    }
 }

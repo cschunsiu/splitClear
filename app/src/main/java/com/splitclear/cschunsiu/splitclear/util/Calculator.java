@@ -52,7 +52,7 @@ public class Calculator {
             long memberId = (long) prepList.get(randomIndex);
 
             Float result = map.get(memberId);
-            map.replace(memberId,setDecimal(result+(float)0.01));
+            map.put(memberId,setDecimal(result+(float)0.01));
             prepList.remove(randomIndex);
         }
 
@@ -84,9 +84,9 @@ public class Calculator {
         }
 
         if(finalTotal > amount){
-            map.replace(maxMap, setDecimal(map.get(maxMap) - (float)0.01));
+            map.put(maxMap, setDecimal(map.get(maxMap) - (float)0.01));
         }else if (finalTotal < amount){
-            map.replace(minMap, setDecimal(map.get(minMap) + (float)0.01));
+            map.put(minMap, setDecimal(map.get(minMap) + (float)0.01));
         }
 
     }

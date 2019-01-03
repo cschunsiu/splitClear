@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.model.Bill;
 import java.util.List;
@@ -43,6 +44,7 @@ public class ShowBalanceAdapter  extends RecyclerView.Adapter<ShowBalanceAdapter
     public class ShowBalanceViewHolder extends RecyclerView.ViewHolder{
         TextView showingTextView, nameTextview;
         ImageView icon;
+        SwipeRevealLayout sw;
 
         public ShowBalanceViewHolder(View itemView){
             super(itemView);
@@ -50,6 +52,8 @@ public class ShowBalanceAdapter  extends RecyclerView.Adapter<ShowBalanceAdapter
             showingTextView = itemView.findViewById(R.id.group_children_edittext);
             nameTextview = itemView.findViewById(R.id.group_children_postMemberName);
             icon = itemView.findViewById(R.id.group_children_image);
+            sw = itemView.findViewById(R.id.sw);
+            sw.setLockDrag(true);
         }
     }
 }
