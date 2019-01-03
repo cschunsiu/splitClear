@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.splitclear.cschunsiu.splitclear.R;
 import com.splitclear.cschunsiu.splitclear.activity.AddGroupActivity;
 import com.splitclear.cschunsiu.splitclear.model.Member;
@@ -35,6 +37,8 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
     public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView showingTextView, nameTextview;
         ImageView icon;
+        SwipeRevealLayout sw;
+        ConstraintLayout viewForeground;
 
         public MemberViewHolder(View itemView){
             super(itemView);
@@ -42,7 +46,10 @@ public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdap
             showingTextView = itemView.findViewById(R.id.group_children_edittext);
             nameTextview = itemView.findViewById(R.id.group_children_postMemberName);
             icon = itemView.findViewById(R.id.group_children_image);
-            itemView.setOnClickListener(this);
+            viewForeground = itemView.findViewById(R.id.view_foreground);
+            sw = itemView.findViewById(R.id.sw);
+            sw.setLockDrag(true);
+            viewForeground.setOnClickListener(this);
         }
 
         @Override

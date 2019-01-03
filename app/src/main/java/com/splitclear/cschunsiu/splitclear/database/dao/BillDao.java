@@ -19,11 +19,14 @@ public interface BillDao {
     @Query("Select *, SUM(amount) as amount from `bill` where groupsId = :groupsId group by memberId, memberName")
     List<Bill> getBillListByMember(long groupsId);
 
+    @Query("Update `bill` set memberName = :memberName where memberId = :memberId and groupsId = :groupsId")
+    void updateMemberName(String memberName, long memberId, long groupsId);
+
     @Insert
     long insertBill(Bill bill);
 
-    @Delete
-    void deleteBill(Bill bill);
+    @Query("Delete from `bill` where groupsId= :groupsId")
+    void deleteBill(Long groupsId);
 
     @Update (onConflict = OnConflictStrategy.REPLACE)
     void updateBill(Bill bill);
